@@ -667,6 +667,12 @@ button {
 .contact {
      background: #004aad;
      padding: 90px 0;
+     max-width: 800px;
+     margin-top: 30px;
+     margin-left: auto;
+     margin-right: auto;
+     border-radius: 12%;
+     box-shadow: -5px 5px 30px 0px #fd6406; /* Ejemplo de sombra */
 }
 
 .contact .titlepage h2 {
