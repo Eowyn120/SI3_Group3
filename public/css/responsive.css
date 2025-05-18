@@ -112,7 +112,7 @@
         width: 100%;
     }
     .navigation .navbar-collapse {
-        background: #00aeefe3;
+        background: #39b54a;
         padding: 20px;
         margin-top: 49px;
         position: absolute;
@@ -135,7 +135,7 @@
     }
 }
 
-@media (max-width: 575px) {
+/*@media (max-width: 575px) {
     .logo {
         text-align: center !important;
         padding-bottom: 40px;
@@ -212,5 +212,167 @@
         background: url(../images/menu_icon.png);
         background-repeat: no-repeat;
     }
+}*/
+
+@media (max-width: 575px) {
+  /* ... otros estilos para el header en móvil ... */
+
+    .header_information {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    height: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+      .logo {
+        text-align: center !important;
+        padding-bottom: 40px; /* Ajusta el padding inferior si es necesario */
+    }
+    .carousel-caption h1 {
+        font-size: 30px;
+        line-height: 41px;
+        padding-bottom: 0px;
+    }
+    .carousel-caption span {
+        font-size: 25px;
+        line-height: 30px;
+    }
+    .carousel-item img {
+        height: 400px;
+    }
+    .relative {
+        top: 54%;
+    }
+    .titlepage h2 {
+        font-size: 22px;
+        line-height: 32px;
+    }
+    .about_img {
+        padding-top: 30px;
+    }
+    .mobile_img {
+        margin-bottom: 30px;
+    }
+    .clients .titlepage span {
+        margin-left: 41px;
+    }
+    .mobile .titlepage span {
+        margin-left: 7px;
+    }
+    .carousel-caption a {
+        margin-top: 20px;
+    }
+
+    #myCarousel.carousel.slide.banner_main {
+    margin-top: 80px; /* Ajusta este valor según la altura de tu nav en móvil */
+  }
+
+
+  .navigation.navbar {
+    float: right; /* Mantiene el float para el botón toggler */
+    display: block !important;
+    padding: 0;
+    width: 100%;
+    height: auto; /* Para que se ajuste al contenido si es necesario */
+    padding-bottom: 1px;
+    padding-top: 8px;
+    margin-top: 4px;
+  }
+
+      .navigation .navbar-collapse {
+        background: #004aad; /* O el color de fondo de tu menú */
+        padding: 20px;
+        margin-top: 37px; /* Espacio desde el botón toggler */
+        position: absolute; /* Posicionamiento para que se despliegue */
+        width: 100%;
+        margin-right: 20px;
+        z-index: 999;
+    }
+
+
+  /* Cuando la clase 'show' se añade por Bootstrap (al hacer clic en el toggler) */
+  .collapse.navbar-collapse.show {
+    display: block; /* Muestra el menú */
+    display: flex; /* Para organizar los elementos internos */
+    flex-direction: column; /* Apila los elementos (enlaces y botones) */
+    align-items: center; /* Centra los elementos horizontalmente */
+  }
+
+  .navbar-nav {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin-bottom: 5px;
+  }
+
+  .navigation.navbar-dark .navbar-nav .nav-link {
+    padding: 10px 0;
+    color: #fff;
+  }
+
+  .navigation.navbar-dark .navbar-toggler {
+    float: right;
+    margin-right: 2px;
+    border: inherit;
+  }
+
+    .navigation.navbar-dark .navbar-toggler-icon {
+        background: url(../images/menu_icon.png);
+        background-repeat: no-repeat;
+    }
+  /*.navigation.navbar-dark .navbar-toggler-icon {
+    /* Estilos del icono del menú */
+  /*aqui va una llave
+
+  /* Estilos para los botones "Regístrate" e "Ingresa" */
+  .sign_btn {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .sign_btn a {
+    display: block;
+    padding: 8px 15px;
+    font-size: 15px;
+    border-radius: 20px;
+  }
+
+  /* En tu archivo CSS general o responsive.css */
+    .navigation.navbar { /* El selector de tu barra de navegación */
+    z-index: 1000; /* Un valor alto para asegurar que esté encima */
+    position: relative; /* Asegúrate de que tenga una posición relativa o superior */
+    }
+
+
+    /*registro y login*/
+
+
+    .contact {
+     padding: 90px 0;
+     margin-top: 90px;
+     margin-left: 50px;
+     margin-right: 50px;
+    border-radius: 5%;
+    }
+
+     .main_form .contactus {
+     margin-bottom: 20px;
+     height: 60px;
+     font-size: 18px;
+     font-weight: normal;
+     width: 100%; /* Asegúrate de que inicialmente ocupe el ancho completo de su contenedor col-md-12 */
+     max-width: 300px; /* Establece un ancho máximo deseado (ajusta este valor) */
+     margin-left: auto; /* Centra el input horizontalmente si es más pequeño que el contenedor */
+     margin-right: auto;
+     display: block; /* Asegura que el elemento sea de bloque para que los márgenes automáticos funcionen horizontalmente */
+
+    }
+    
 }
 
