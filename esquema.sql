@@ -62,20 +62,9 @@ CREATE TABLE IF NOT EXISTS `nutricode`.`paciente` (
   `ant_psicologicos` VARCHAR(45) NOT NULL,
   `patologia_id` INT NOT NULL,
   `nutricionistas_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `patologia_id`, `nutricionistas_id`),
-  UNIQUE INDEX `cedula_UNIQUE` (`cedula` ASC) VISIBLE,
-  INDEX `fk_ paciente_patologia1_idx` (`patologia_id` ASC) VISIBLE,
-  INDEX `fk_ paciente_nutricionistas1_idx` (`nutricionistas_id` ASC) VISIBLE,
-  CONSTRAINT `fk_ paciente_patologia1`
-    FOREIGN KEY (`patologia_id`)
-    REFERENCES `nutricode`.`patologia` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ paciente_nutricionistas1`
-    FOREIGN KEY (`nutricionistas_id`)
-    REFERENCES `nutricode`.`nutricionistas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`patologia_id`) REFERENCES `nutricode`.`patologia` (`id`),
+  FOREIGN KEY (`nutricionistas_id`) REFERENCES `nutricode`.`nutricionistas` (`id`))
 ENGINE = InnoDB;
 
 
@@ -83,7 +72,7 @@ ENGINE = InnoDB;
 -- Table `nutricode`.`imc`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `nutricode`.`imc` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `status` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -111,25 +100,11 @@ CREATE TABLE IF NOT EXISTS `nutricode`.`seguimiento` (
   ` paciente_id` INT NOT NULL,
   `imc_id` INT NOT NULL,
   `condicion_id` INT NOT NULL,
-  PRIMARY KEY (`id`, ` paciente_id`, `imc_id`, `condicion_id`),
-  INDEX `fk_seguimiento_ paciente1_idx` (` paciente_id` ASC) VISIBLE,
-  INDEX `fk_seguimiento_imc1_idx` (`imc_id` ASC) VISIBLE,
-  INDEX `fk_seguimiento_condicion1_idx` (`condicion_id` ASC) VISIBLE,
-  CONSTRAINT `fk_seguimiento_ paciente1`
-    FOREIGN KEY (` paciente_id`)
-    REFERENCES `nutricode`.`paciente` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_seguimiento_imc1`
-    FOREIGN KEY (`imc_id`)
-    REFERENCES `nutricode`.`imc` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_seguimiento_condicion1`
-    FOREIGN KEY (`condicion_id`)
-    REFERENCES `nutricode`.`condicion` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `fecha` DATE NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (` paciente_id`) REFERENCES `nutricode`.`paciente` (`id`),
+  FOREIGN KEY (`imc_id`) REFERENCES `nutricode`.`imc` (`id`),
+  FOREIGN KEY (`condicion_id`) REFERENCES `nutricode`.`condicion` (`id`))
 ENGINE = InnoDB;
 
 
@@ -137,18 +112,13 @@ ENGINE = InnoDB;
 -- Table `nutricode`.`carbohidratos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `nutricode`.`carbohidratos` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `cal_carbohidratos` FLOAT NOT NULL,
   `gramaje` FLOAT NOT NULL,
   `racion` FLOAT NOT NULL,
   `seguimiento_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `seguimiento_id`),
-  INDEX `fk_carbohidratos_seguimiento1_idx` (`seguimiento_id` ASC) VISIBLE,
-  CONSTRAINT `fk_carbohidratos_seguimiento1`
-    FOREIGN KEY (`seguimiento_id`)
-    REFERENCES `nutricode`.`seguimiento` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`seguimiento_id`) REFERENCES `nutricode`.`seguimiento` (`id`))
 ENGINE = InnoDB;
 
 
@@ -156,18 +126,13 @@ ENGINE = InnoDB;
 -- Table `nutricode`.`proteinas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `nutricode`.`proteinas` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `cal_proteicas` FLOAT NOT NULL,
   `gramaje` FLOAT NOT NULL,
   `racion` FLOAT NOT NULL,
   `seguimiento_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `seguimiento_id`),
-  INDEX `fk_proteinas_seguimiento1_idx` (`seguimiento_id` ASC) VISIBLE,
-  CONSTRAINT `fk_proteinas_seguimiento1`
-    FOREIGN KEY (`seguimiento_id`)
-    REFERENCES `nutricode`.`seguimiento` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`seguimiento_id`) REFERENCES `nutricode`.`seguimiento` (`id`))
 ENGINE = InnoDB;
 
 
@@ -180,13 +145,8 @@ CREATE TABLE IF NOT EXISTS `nutricode`.`lipidos` (
   `gramaje` FLOAT NOT NULL,
   `racion` FLOAT NOT NULL,
   `seguimiento_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `seguimiento_id`),
-  INDEX `fk_lipidos_seguimiento1_idx` (`seguimiento_id` ASC) VISIBLE,
-  CONSTRAINT `fk_lipidos_seguimiento1`
-    FOREIGN KEY (`seguimiento_id`)
-    REFERENCES `nutricode`.`seguimiento` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`seguimiento_id`) REFERENCES `nutricode`.`seguimiento` (`id`))
 ENGINE = InnoDB;
 
 
@@ -199,13 +159,8 @@ CREATE TABLE IF NOT EXISTS `nutricode`.`resultado` (
   `plan_nutricional` VARCHAR(150) NOT NULL,
   `recomendaciones` VARCHAR(150) NOT NULL,
   `seguimiento_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `seguimiento_id`),
-  INDEX `fk_resultado_seguimiento_idx` (`seguimiento_id` ASC) VISIBLE,
-  CONSTRAINT `fk_resultado_seguimiento`
-    FOREIGN KEY (`seguimiento_id`)
-    REFERENCES `nutricode`.`seguimiento` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`seguimiento_id`) REFERENCES `nutricode`.`seguimiento` (`id`))
 ENGINE = InnoDB;
 
 
@@ -213,7 +168,7 @@ ENGINE = InnoDB;
 -- Table `nutricode`.`admin`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `nutricode`.`admin` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `user` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))

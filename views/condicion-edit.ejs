@@ -10,7 +10,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>NutriCode (Iniciar sesion)</title>
+      <title>NutriCode</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -21,7 +21,7 @@
       <!-- Responsive-->
       <link rel="stylesheet" href="css/responsive.css">
       <!-- fevicon -->
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <link rel="icon" href="imagesn/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
       <!-- Tweaks for older IEs-->
@@ -62,17 +62,16 @@
                            <div class="collapse navbar-collapse" id="navbarsExample04">
                               <ul class="navbar-nav mr-auto">
                                  <li class="nav-item">
-                                    <a class="nav-link" href="/nosotros">Nosotros</a>
+                                    <a class="nav-link" href="/admin/imc">IMC</a>
                                  </li> 
                                  <li class="nav-item">
-                                    <a class="nav-link" href="/clientes">Nuestros Clientes</a>
+                                    <a class="nav-link" href="/admin/condicion">Condición</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="/mision">Nuestra mision</a>
+                                    <a class="nav-link" href="/admin/patologia">Patologías</a>
                                  </li>
                               </ul>
-                              <div class="sign_btn"><a href="/register">Regisrate</a></div>
-                              <div class="sign_btn"><a href="#">Ingresa</a></div>
+                              <div class="sign_btn"><a href="/admin/logout">Salir</a></div>
                            </div>
                         </nav>
                      </div>
@@ -83,56 +82,30 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-    
-            <!--  contact -->
-            <div id="contact" class="contact">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-12 col-sm-12">
-                        <div class="titlepage">
-                           <h2>Inicia Sesión</h2>
-                        </div>
-                     </div>
-                     <div class="col-md-6 offset-md-3">
-                        <form id="request" class="main_form" method="post" action="/login">
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <input class="contactus" placeholder="Correo electronico" type="email" name="email" required> 
-                              </div>
-                              <div class="col-md-12">
-                                 <input class="contactus" placeholder="Contraseña" type="password" name="password" required>                          
-                              <div class="col-sm-12">
-                                 <button class="send_btn">Ingresar</button>
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-                  </div>
+      <div id="contact" class="contact">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 col-sm-12">
+                  <div class="titlepage">
+                     <h2>Edita</h2>
                   </div>
                </div>
+               <div class="col-md-6 offset-md-3">
+                  <form id="request" class="main_form" method="post" action="/admin/condicion/<%= datos[0].id %>">
+                     <div class="row">
+                        <div class="col-md-12 ">
+                           <input class="contactus" placeholder="Nombre de la condicion" type="text" name="Nombre" value="<%= datos[0].nombre %>" required> 
+                        </div>
+                        <div class="col-sm-12">
+                           <button class="send_btn">Editar</button>  
+                        </div>
+                     </div>
+                  </form>
+               </div>
             </div>
-            <!-- end contact -->
-
-
-   <!--    <div class="login-container">
-         <h2>Iniciar Sesión</h2>
-         <form class="login-form">
-           <div class="form-group">
-             <label for="usuario">Usuario o Correo Electrónico:</label>
-             <input type="text" id="usuario" name="usuario" required>
-           </div>
-           <div class="form-group">
-             <label for="contrasena">Contraseña:</label>
-             <input type="password" id="contrasena" name="contrasena" required>
-           </div>
-           <button type="submit" class="btn-login">Iniciar Sesión</button>
-           <div class="options">
-             <a href="#">¿Olvidaste tu contraseña?</a>
-             <a href="registro.html">Crear una cuenta</a> </div>
-         </form>
-       </div> -->
-
-           
+            </div>
+         </div>
+      </div>  
       <!--  footer -->
       <footer>
          <div class="footer">
@@ -140,24 +113,24 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                        <p>© 2025 Nutricode. Todos los Derechos Reservados</a></p>
+                        <p>© 2025 NutriCode. Todos los Derechos Reservados</p>
                      </div>
                   </div>
                </div>
             </div>
          </div>
       </footer>
-     <!-- end footer -->
-     <!-- Javascript files-->
-     <script src="js/jquery.min.js"></script>
-     <script src="js/popper.min.js"></script>
-     <script src="js/bootstrap.bundle.min.js"></script>
-     <script src="js/jquery-3.0.0.min.js"></script>
-   
-     <!-- sidebar -->
-     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-     <script src="js/custom.js"></script>
-     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-  </body>
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+    
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+   </body>
 </html>
 

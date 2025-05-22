@@ -1,5 +1,9 @@
+require ('dotenv').config();
 var express = require('express');
 var router = express.Router();
+
+const nutricionistasModel = require("../models/nutricionista");
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,11 +31,43 @@ router.get('/login', function(req, res, next){
 });
 
 router.post('/register', function(req, res, next){
-  const {nombre, apellido, email, password, preg, seg} = req.body;
-  console.log(req.body);
-  res.redirect('/login');
-  console.log('Registro funciona');
-  
-})
+  const {nombre, apellido, email, password, preg, resp} = req.body;
+  nutricionistasModel
+  .registrar(nombre, apellido, email, password, preg, resp)
+  .then((idNutricionistaRegistrado)=>{
+    res.redirect('/login');
+  })
+  .catch((err)=>{
+      console.error(err.message);
+      return res.status(500).send('Error en el registro')
+  })
+});
+
+router.post('/login', function(req, res, next){
+  const {email, password} = req.body;
+  if (!email || !password) {
+    return res.status(500).send("No hay nombre o precio");
+  }
+  let concat, concat2;
+  nutricionistasModel
+    .login(email)
+    .then((resultados) => {
+      concat = resultados[0].password;
+      concat2 = resultados[0].id;
+      console.log(concat);
+      console.log(concat2);
+      if (password == concat){
+        req.session.auth = true;
+        req.session.iduser= concat2;
+        res.redirect('/users');
+      }else{
+        res.send('esto no funciona')
+      }
+    })
+    .catch((err) => {
+      console.error(err.message);
+      return res.status(500).send('Error en el inicio de sesion')
+    });
+});
 
 module.exports = router;
