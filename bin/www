@@ -8,6 +8,10 @@ var app = require('../app');
 var debug = require('debug')('proyecto:server');
 var http = require('http');
 
+// Importa tu pool de conexiones a la base de datos aquí
+const db = require('../conexion'); // Asegúrate que esta ruta sea correcta para tu 'conexion.js'
+
+
 /**
  * Get port from environment and store in Express.
  */
@@ -28,6 +32,20 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+// --- ¡AÑADE ESTE BLOQUE DE CÓDIGO AQUÍ ABAJO! ---
+console.log('Verificando conexión a la base de datos...');
+db.getConnection(function(err, connection) { // Aquí usamos el callback que requiere el paquete 'mysql'
+    if (err) {
+        console.error('Error al conectar a la base de datos:', err.message);
+        // Puedes considerar terminar la aplicación aquí si la conexión a la DB es crítica
+        // process.exit(1);
+        return; // Sal del callback si hay un error
+    }
+    console.log('Conexión a la base de datos MySQL exitosa!');
+    connection.release(); // ¡Importante! Libera la conexión de vuelta al pool para que pueda ser usada por otras peticiones
+});
+// --- FIN DEL BLOQUE A AÑADIR ---
 
 /**
  * Normalize a port into a number, string, or false.
@@ -87,4 +105,6 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+   // --- ¡AÑADE O ASEGÚRATE DE QUE ESTA LÍNEA EXISTA AQUÍ! ---
+  console.log('Servidor escuchando en http://localhost:' + addr.port); // <--- ¡Esta es la que queremos!
 }

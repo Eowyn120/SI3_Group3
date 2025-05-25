@@ -133,6 +133,50 @@
         background: url(../images/menu_icon.png);
         background-repeat: no-repeat;
     }
+
+
+
+    /*responsive de los nuevos views*/
+     .contact {
+        padding: 40px 20px;
+        max-width: 95%;
+        margin-top: 40px;
+        border-radius: 8%;
+        box-shadow: -3px 3px 15px 0px #fd6406;
+    }
+    .main_form {
+        padding: 15px; /* Reduce el padding en móvil */
+    }
+
+    .category_item {
+        flex-direction: column; /* Apila el número/nombre y los botones verticalmente */
+        align-items: flex-start; /* Alinea el contenido a la izquierda */
+        padding: 10px 0; /* Reduce padding vertical */
+        margin-bottom: 15px; /* Reduce margen entre elementos */
+    }
+
+    .category_info {
+        width: 100%; /* Ocupa todo el ancho */
+        margin-bottom: 10px; /* Espacio entre info y botones */
+    }
+
+    .category_actions {
+        width: 100%; /* Los botones ocupan todo el ancho disponible */
+        justify-content: center; /* Centra los botones en la línea */
+        margin-top: 0;
+    }
+
+    .btn-danger,
+    .btn-warning {
+        font-size: 13px; /* Reduce un poco más el tamaño de los botones */
+        padding: 8px 12px;
+        max-width: 100px; /* Limita un poco más el ancho individual de los botones */
+    }
+
+    /* Ajuste para el botón "Agregar Nueva Categoría" */
+    .d-grid.gap-2.d-md-flex.justify-content-md-center.mb-4 {
+        justify-content: center !important; /* Asegura el centrado en móvil */
+    }
 }
 
 /*@media (max-width: 575px) {
@@ -268,7 +312,7 @@
     margin-top: 80px; /* Ajusta este valor según la altura de tu nav en móvil */
   }
 
-
+  
   .navigation.navbar {
     float: right; /* Mantiene el float para el botón toggler */
     display: block !important;
@@ -373,6 +417,80 @@
      display: block; /* Asegura que el elemento sea de bloque para que los márgenes automáticos funcionen horizontalmente */
 
     }
+
+    /*responsive de los views nuevos*/
+
+
+    .main_form {
+        padding: 10px; /* Más reducción de padding */
+    }
+
+    .category_item {
+        padding: 8px 0;
+        margin-bottom: 10px;
+    }
+
+    .category_info {
+        font-size: 16px; /* Reducción de fuente para la info */
+    }
+    
+
+    .btn-danger,
+    .btn-warning {
+        font-size: 12px; /* Más reducción para caber */
+        padding: 6px 10px;
+        max-width: 90px;
+    }
     
 }
 
+
+/* En tu archivo responsive.css */
+@media (max-width: 767px) { /* Puedes ajustar este breakpoint si 360px es el problema */
+    /* El estilo clave para la tabla responsiva */
+    .table-responsive-container {
+        width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho disponible */
+        overflow-x: auto; /* ¡Esto hace que la tabla se desplace horizontalmente! */
+        -webkit-overflow-scrolling: touch; /* Mejora el desplazamiento en iOS */
+        /* Opcional: Estilo para la barra de desplazamiento (para navegadores WebKit) */
+        scrollbar-width: thin; /* Firefox */
+        scrollbar-color: #fd6406 #004aad; /* Firefox */
+    }
+
+    /* Estilos opcionales para la barra de desplazamiento en navegadores basados en WebKit (Chrome, Edge, Safari) */
+    .table-responsive-container::-webkit-scrollbar {
+        height: 8px; /* Altura de la barra de desplazamiento horizontal */
+    }
+
+    .table-responsive-container::-webkit-scrollbar-thumb {
+        background-color: #fd6406; /* Color del "pulgar" de la barra de desplazamiento */
+        border-radius: 10px;
+    }
+
+    .table-responsive-container::-webkit-scrollbar-track {
+        background-color: #004aad; /* Color del "fondo" de la barra de desplazamiento */
+    }
+
+    /* Ajustes para los botones dentro de la tabla si es necesario en móvil */
+    .d-grid.gap-2.d-md-flex.justify-content-md-end {
+        flex-direction: column; /* Apila los botones si no hay espacio */
+        align-items: center; /* Centra los botones apilados */
+    }
+    .d-grid.gap-2.d-md-flex.justify-content-md-end a {
+        width: 100%; /* Que los botones ocupen el ancho completo al apilarse */
+        max-width: 150px; /* Limita su ancho máximo */
+        margin-bottom: 5px; /* Espacio entre botones apilados */
+    }
+}
+
+/* Opcional: Si quieres que el desplazamiento horizontal sea SIEMPRE, incluso en desktop,
+   entonces quita este estilo de la media query y ponlo en tu style.css principal.
+   Pero generalmente, solo es necesario en móvil.
+*/
+/*
+.table-responsive-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+*/
