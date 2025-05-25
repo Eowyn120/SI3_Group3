@@ -15,15 +15,15 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
       <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="../css/style.css">
       <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
+      <link rel="stylesheet" href="../css/responsive.css">
       <!-- fevicon -->
-      <link rel="icon" href="imagesn/fevicon.png" type="image/gif" />
+      <link rel="icon" href="../imagesn/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
@@ -35,7 +35,7 @@
    <body class="main-layout">
       <!-- loader  -->
       <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+         <div class="loader"><img src="/images/loading.gif" alt="#" /></div>
       </div>
       <!-- end loader -->
       <!-- header -->
@@ -48,7 +48,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="/"><img src="imagesn/logon.png" alt="#" /></a>
+                              <a href="/"><img src="/imagesn/logon.png" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -61,6 +61,9 @@
                            </button>
                            <div class="collapse navbar-collapse" id="navbarsExample04">
                               <ul class="navbar-nav mr-auto">
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="/admin/inicio">Nutricionistas</a>
+                                 </li> 
                                  <li class="nav-item">
                                     <a class="nav-link" href="/admin/imc">IMC</a>
                                  </li> 
@@ -82,48 +85,58 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-                     <table border="2" class="table table-hover table-dark table-striped">
-                        <!-- <caption>Categorias</caption> -->
-                        <tr>
-                            <th>
-                                <p>N°</p>
-                            </th>
-                            <th>
-                                <p>Nombre</p>
-                            </th>
-                            <td>
-                                <div class="input-group"><a type="button" class="btn btn-dark"
-                                        href="/admin/patologia-add">Agregar</a></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <% if (datos) { %>
-                                <% for (let i=0; i < datos.length; i++){ %>
-                                    <% if (datos) { %>
-                        <tr>
-                            <td>
-                                <%= (i + 1) %>
-                            </td>
-                            <td>
-                                <%= datos[i].nombre %>
-                            </td>
-                            <td>
-                                <div class="input-group">
-                                    <a href="/admin/patologia-delete/<%= datos[i].id%>" type="button"
-                                        class="btn btn-dark">Eliminar</a>
-                                    <a href="/admin/patologia-edit/<%= datos[i].id%>" type="button"
-                                        class="btn btn-dark">Actualizar</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <% } %>
-                            <% } %>
+<div id="contact" class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="titlepage">
+                    <h2>Administrar Patologías</h2>
+                </div>
+            </div>
+            <div class="col-md-8 offset-md-2">
+                <div class="main_form">
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
+                        <a href="/admin/patologia-add" class="send_btn" style="max-width: 300px;">Agregar Nueva Patología</a>
+                    </div>
+
+                    <div class="table-responsive-container">
+                        <table border="2" class="table table-hover table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">N°</th>
+                                    <th scope="col" class="text-start">Nombre</th>
+                                    <th scope="col" class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (datos && datos.length > 0) { %>
+                                    <% for (let i = 0; i < datos.length; i++) { %>
+                                        <tr>
+                                            <td class="text-center"><%= (i + 1) %></td>
+                                            <td><%= datos[i].nombre %></td> <td class="text-center">
+                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                    <a href="/admin/patologia-delete/<%= datos[i].id%>" class="btn btn-danger btn-sm">Eliminar</a>
+                                                    <a href="/admin/patologia-edit/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } %>
                                 <% } else { %>
                                     <tr>
-                                        <th class="display-6">No hay patologias en el sistema</th>
+                                        <td colspan="3" class="text-center text-muted py-4">
+                                            No hay patologías en el sistema
+                                        </td>
                                     </tr>
-                                    <% } %>
-                    </table>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
       <!--  footer -->
       <footer>
          <div class="footer">
@@ -140,15 +153,14 @@
       </footer>
       <!-- end footer -->
       <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="/js/jquery.min.js"></script>
+      <script src="/js/popper.min.js"></script>
+      <script src="/js/bootstrap.bundle.min.js"></script>
+      <script src="/js/jquery-3.0.0.min.js"></script>
     
       <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
+      <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="/js/custom.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
    </body>
 </html>
-

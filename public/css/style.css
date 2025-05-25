@@ -671,7 +671,7 @@ button {
      margin-left: auto;
      margin-right: auto;
      border-radius: 12%;
-     box-shadow: -5px 5px 30px 0px #fd6406; /* Ejemplo de sombra */
+     box-shadow: -5px 5px 30px 0px #004aad; /* Ejemplo de sombra */
 }
 
 .contact .titlepage h2 {
@@ -697,6 +697,7 @@ button {
      transition: ease-in all 0.5s;
      background-color: transparent;
      text-transform: uppercase;
+     text-align: center;
      font-weight: 500;
      border: #376bd1 solid 3px;
      color: #f9fcfd;
@@ -794,7 +795,7 @@ ul.cont li {
 .copyright {
      margin-top: 90px;
      padding: 20px 0px;
-     background-color: #004aad;
+     background-color: #39b54a;
 }
 
 .copyright p {
@@ -842,3 +843,142 @@ ul.cont li {
 }
 
 
+
+
+/*estilos de templates nuevos*/
+
+
+.contact {
+    background: #004aad;
+    padding: 90px 0;
+    max-width: 800px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5%;
+    box-shadow: -5px 5px 30px 0px #004aad;
+}
+
+.main_form {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.1); /* Ligero fondo para el contenedor de la tabla */
+    border-radius: 10px;
+}
+
+/* Reutilizamos los estilos del .send_btn y los aplicamos a los botones de Bootstrap */
+.send_btn,
+.btn-danger,
+.btn-warning {
+    font-size: 15px;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: ease-in all 0.5s;
+    text-align: center;
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+}
+
+.send_btn {
+    background-color: #17a2b8; /* Ejemplo de un color para 'Agregar' */
+    color: #fff;
+    border: none;
+    max-width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.send_btn:hover { background-color: #138496; }
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+}
+.btn-danger:hover { background-color: #bd2130; }
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+}
+.btn-warning:hover { background-color: #e0a800; }
+
+
+/*mas estilos para las tablas (me quiero mata)*/
+
+/* --- Estilos para la tabla en general --- */
+
+/* Fondo de la tabla (sobrescribe table-dark) */
+.table {
+    background-color: rgba(0, 74, 173, 0.5); /* Un azul oscuro con transparencia, como el de tu .contact */
+    color: #f9fcfd; /* Color de texto general para la tabla (casi blanco) */
+    border-radius: 8px; /* Bordes ligeramente redondeados para la tabla completa */
+    overflow: hidden; /* Asegura que los bordes redondeados se vean bien con el contenido */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Un borde sutil */
+}
+
+/* --- Estilos para la cabecera de la tabla (<thead>) --- */
+
+.table thead {
+    background-color: rgba(255, 255, 255, 0.1); /* Un blanco muy transparente para la cabecera */
+    color: #f9fcfd; /* Color del texto de la cabecera */
+}
+
+.table th {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Un borde inferior más claro para las cabeceras */
+    padding: 12px 15px; /* Espaciado interno de las cabeceras */
+}
+
+/* --- Estilos para el cuerpo de la tabla (<tbody>) --- */
+
+.table tbody tr {
+    transition: background-color 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Fondo de las filas impares (sobrescribe table-striped) */
+.table tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 74, 173, 0.4); /* Un azul un poco más oscuro que el fondo general de la tabla */
+}
+
+/* Fondo de las filas pares (sobrescribe table-striped) */
+.table tbody tr:nth-of-type(even) {
+    background-color: rgba(0, 74, 173, 0.3); /* Un azul ligeramente más claro para las filas pares */
+}
+
+/* Estilo al pasar el ratón (hover) (sobrescribe table-hover) */
+.table tbody tr:hover {
+    background-color: rgba(253, 100, 6, 0.3); /* Un naranja de tu palette con transparencia al pasar el ratón */
+    color: #f9fcfd; /* Mantiene el color de texto claro */
+}
+
+/* Estilos para las celdas de la tabla (<td>) */
+.table td {
+    padding: 10px 15px; /* Espaciado interno de las celdas */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Línea divisoria sutil entre celdas */
+    vertical-align: middle; /* Alinea el contenido verticalmente al centro */
+}
+
+/* Estilo para el mensaje "No hay datos en el sistema" */
+.table .text-muted {
+    color: rgba(249, 252, 253, 0.7) !important; /* Un gris claro para el texto */
+    font-style: italic;
+}
+
+/* --- Eliminar clases de Bootstrap que ya no necesitamos (opcional, pero buena práctica) --- */
+/* Si pones tus estilos después de Bootstrap, estos no son estrictamente necesarios,
+   pero si quieres eliminar la "influencia" directa de esos estilos, puedes quitarlas del HTML. */
+/*
+En tu HTML, podrías cambiar:
+<table class="table table-hover table-dark table-striped">
+Por:
+<table class="table custom-table">
+Y luego en tu CSS defines .custom-table
+*/
+
+.table-responsive-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+     scrollbar-width: thin; /* Firefox */
+     scrollbar-color: #fd6406 #004aad; /* Firefox */
+}
