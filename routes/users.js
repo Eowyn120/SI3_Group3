@@ -77,15 +77,15 @@ router.get('/paciente-edit/:id', function(req, res, next){
       return res.status(500).send("Error buscando al paciente");
     })
   } else{
-    res.redirect('/');
+    res.redirect('/login');
   }
 });
 
 router.post('/paciente-update/:id', function(req, res, next){
-  const {nombres, apellidos, cedula, edad, fecha_nacimiento, telefono, email, direccion, sexo, ant_familiares, alergias, ant_personales, ant_psicologicos, patologia_id} = req.body;
+  const {nombres, apellidos, cedula, edad, fecha_nacimiento, telefono, email, direccion, sexo, ant_familiares, alergias, ant_personales, ant_psicologicos} = req.body;
   const id = req.params.id;
   pacientesmodel
-  .editarPaciente(nombres, apellidos, cedula, edad, fecha_nacimiento, telefono, email, direccion, sexo, ant_familiares, alergias, ant_personales, ant_psicologicos, patologia_id, id)
+  .editarPaciente(nombres, apellidos, cedula, edad, fecha_nacimiento, telefono, email, direccion, sexo, ant_familiares, alergias, ant_personales, ant_psicologicos, id)
   .then(()=>{
     res.redirect('/users')
   })

@@ -15,15 +15,15 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <link rel="stylesheet" href="/css/bootstrap.min.css">
       <!-- style css -->
-      <link rel="stylesheet" href="../css/style.css">
+      <link rel="stylesheet" href="/css/style.css">
       <!-- Responsive-->
-      <link rel="stylesheet" href="../css/responsive.css">
+      <link rel="stylesheet" href="/css/responsive.css">
       <!-- fevicon -->
-      <link rel="icon" href="../imagesn/fevicon.png" type="image/gif" />
+      <link rel="icon" href="/imagesn/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
+      <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
@@ -90,14 +90,14 @@
                   </div>
                </div>
                <div class="col-md-6 offset-md-3">
-                  <form id="request" class="main_form" method="post" action="/users/update-patologia/<%= datos[0].id %>">
+                  <form id="request" class="main_form" method="post" action="/users/paciente-update/<%= datos[0].id %>">
                      <div class="row">
                         <div class="col-md-12 ">
                            <input class="contactus" placeholder="Nombres" type="text" name="nombres" value="<%= datos[0].nombres %>" required>
-                           <input class="contactus" placeholder="Apellidos" type="text" name="apellidos" value="<%= datos[0].apellidos>" required> 
+                           <input class="contactus" placeholder="Apellidos" type="text" name="apellidos" value="<%= datos[0].apellidos %>" required> 
                            <input class="contactus" placeholder="Cedula" type="number" name="cedula" value="<%= datos[0].cedula %>" required> 
                            <input class="contactus" placeholder="Edad" type="number" name="edad" value="<%= datos[0].edad %>" required minlength="1"> 
-                           <input class="contactus" placeholder="Fecha de Nacimiento" type="date" name="fecha_nacimiento" value="<%= datos[0].fecha de nacimiento %>" required> 
+                           <input class="contactus" placeholder="Fecha de Nacimiento" type="date" name="fecha_nacimiento" value="<%= datos[0].fecha_de_nacimiento %>" required> 
                            <input class="contactus" placeholder="Teléfono" type="number" name="telefono" value="<%= datos[0].telefono %>" required> 
                            <input class="contactus" placeholder="Correo Electrónico" type="email" name="correo" value="<%= datos[0].correo %>" required> 
                            <input class="contactus" placeholder="Direccion" type="text" name="direccion" value="<%= datos[0].direccion %>" required>
@@ -109,25 +109,10 @@
                            <input class="contactus" placeholder="Antecedentes Familiares" type="text" name="ant_familiares" value="<%= datos[0].ant_familiares %>" required>
                            <input class="contactus" placeholder="Alergias" type="text" name="alergias" value="<%= datos[0].alergias %>" required> 
                            <input class="contactus" placeholder="Antecedentes Personales" type="text" name="ant_personales" value="<%= datos[0].ant_personales %>" required> 
-                           <input class="contactus" placeholder="Antecedentes Psicologicos" type="text" name="ant_psicologicos" value="<%= datos[0].ant_psicologicos %>" required> 
-            <select name="patologia_id">
-                <option value="">--Seleccione--</option>
-                <% if (datos) { %>
-                    <% for (let i=0; i < datos.length; i++){ %>
-                        <% if (datos) { %>
-                            <option value="<%= datos[i].id %>">
-                                <%= datos[i].nombre %>
-                            </option>
-
-                            <% } %>
-                                <% } %>
-                                    <% } else { %>
-                                        <option value="">No existen patolgoias en el sistema</option>
-                                        <% } %>
-            </select>                                                    
+                           <input class="contactus" placeholder="Antecedentes Psicologicos" type="text" name="ant_psicologicos" value="<%= datos[0].ant_psicologicos %>" required>                                                   
                         </div>
                         <div class="col-sm-12">
-                           <button class="send_btn">Añadir</button>  
+                           <button class="send_btn">Edit</button>  
                         </div>
                      </div>
                   </form>
