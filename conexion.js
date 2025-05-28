@@ -10,14 +10,3 @@ const pool = mysql.createPool({
 });
 
 module.exports = pool; // Exportamos el pool de conexiones directamente
-
-
-/*require ('dotenv').config();
-const mysql = require ('mysql');
-
-module.exports = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "nutricode"
-});*/

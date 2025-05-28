@@ -129,61 +129,6 @@
     </div>
 </div>
 
-<<div id="contact" class="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="titlepage">
-                    <h2>Nutricionistas Registrados</h2> </div>
-            </div>
-            <div class="col-md-8 offset-md-2">
-                <div class="main_form">
-
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
-                        <a href="/admin/nutricionista-add" class="send_btn" style="max-width: 250px;">Registrar Nuevo Nutricionista</a>
-                    </div>
-
-                    <div class="table-responsive-container">
-                        <table border="2" class="table table-hover table-dark table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">N°</th>
-                                    <th scope="col" class="text-start">Nombres</th>
-                                    <th scope="col" class="text-start">Apellidos</th>
-                                    <th scope="col" class="text-start">Correo Electrónico</th>
-                                    <th scope="col" class="text-center">Acciones</th> </tr>
-                            </thead>
-                            <tbody>
-                                <% if (datos && datos.length > 0) { %>
-                                    <% for (let i = 0; i < datos.length; i++){ %>
-                                        <tr>
-                                            <td class="text-center"><%= (i + 1) %></td>
-                                            <td><%= datos[i].nombres %></td>
-                                            <td><%= datos[i].apellidos %></td>
-                                            <td><%= datos[i].email %></td>
-                                            <td class="text-center">
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                    <a href="/admin/nutricionista-delete/<%= datos[i].id%>" class="btn btn-danger btn-sm">Eliminar</a>
-                                                    <a href="/admin/nutricionista-edit/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <% } %>
-                                <% } else { %>
-                                    <tr>
-                                        <td colspan="5" class="text-center text-muted py-4">
-                                            No hay nutricionistas registrados en el sistema
-                                        </td>
-                                    </tr>
-                                <% } %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
       <!--  footer -->
       <footer>
          <div class="footer">

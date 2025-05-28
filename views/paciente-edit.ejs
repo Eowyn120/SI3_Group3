@@ -68,6 +68,7 @@
                                     <a class="nav-link" href="/#">Perfil</a>
                                  </li>
 
+
                               </ul>
                               <div class="sign_btn"><a href="/users/logout">Salir</a></div>
                            </div>
@@ -80,62 +81,61 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-<<div id="contact" class="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="titlepage">
-                    <h2>Pacientes Registrados</h2> </div>
-            </div>
-            <div class="col-md-8 offset-md-2">
-                <div class="main_form">
+      <div id="contact" class="contact">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 col-sm-12">
+                  <div class="titlepage">
+                     <h2>Añade una Paciente</h2>
+                  </div>
+               </div>
+               <div class="col-md-6 offset-md-3">
+                  <form id="request" class="main_form" method="post" action="/users/update-patologia/<%= datos[0].id %>">
+                     <div class="row">
+                        <div class="col-md-12 ">
+                           <input class="contactus" placeholder="Nombres" type="text" name="nombres" value="<%= datos[0].nombres %>" required>
+                           <input class="contactus" placeholder="Apellidos" type="text" name="apellidos" value="<%= datos[0].apellidos>" required> 
+                           <input class="contactus" placeholder="Cedula" type="number" name="cedula" value="<%= datos[0].cedula %>" required> 
+                           <input class="contactus" placeholder="Edad" type="number" name="edad" value="<%= datos[0].edad %>" required minlength="1"> 
+                           <input class="contactus" placeholder="Fecha de Nacimiento" type="date" name="fecha_nacimiento" value="<%= datos[0].fecha de nacimiento %>" required> 
+                           <input class="contactus" placeholder="Teléfono" type="number" name="telefono" value="<%= datos[0].telefono %>" required> 
+                           <input class="contactus" placeholder="Correo Electrónico" type="email" name="correo" value="<%= datos[0].correo %>" required> 
+                           <input class="contactus" placeholder="Direccion" type="text" name="direccion" value="<%= datos[0].direccion %>" required>
+                           <select name="sexo">
+                              <option value="">--Seleccione Sexo--</option>
+                              <option value="Masculino">Masculino</option>
+                              <option value="Femenino">Femenino</option>
+                           </select> 
+                           <input class="contactus" placeholder="Antecedentes Familiares" type="text" name="ant_familiares" value="<%= datos[0].ant_familiares %>" required>
+                           <input class="contactus" placeholder="Alergias" type="text" name="alergias" value="<%= datos[0].alergias %>" required> 
+                           <input class="contactus" placeholder="Antecedentes Personales" type="text" name="ant_personales" value="<%= datos[0].ant_personales %>" required> 
+                           <input class="contactus" placeholder="Antecedentes Psicologicos" type="text" name="ant_psicologicos" value="<%= datos[0].ant_psicologicos %>" required> 
+            <select name="patologia_id">
+                <option value="">--Seleccione--</option>
+                <% if (datos) { %>
+                    <% for (let i=0; i < datos.length; i++){ %>
+                        <% if (datos) { %>
+                            <option value="<%= datos[i].id %>">
+                                <%= datos[i].nombre %>
+                            </option>
 
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
-                        <a href="/users/paciente-add" class="send_btn" style="max-width: 250px;">Registrar Nuevo Paciente</a>
-                    </div>
-
-                    <div class="table-responsive-container">
-                        <table border="2" class="table table-hover table-dark table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">N°</th>
-                                    <th scope="col" class="text-start">Nombres</th>
-                                    <th scope="col" class="text-start">Apellidos</th>
-                                    <th scope="col" class="text-start">Edad</th>
-                                    <th scope="col" class="text-start">Teléfono</th>                                    
-                                    <th scope="col" class="text-center">Acciones</th> </tr>
-                            </thead>
-                            <tbody>
-                                <% if (datos && datos.length > 0) { %>
-                                    <% for (let i = 0; i < datos.length; i++){ %>
-                                        <tr>
-                                            <td class="text-center"><%= (i + 1) %></td>
-                                            <td><%= datos[i].nombres %></td>
-                                            <td><%= datos[i].apellidos %></td>
-                                            <td><%= datos[i].edad %></td>
-                                            <td><%= datos[i].telefono %></td>
-                                            <td class="text-center">
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                    <a href="/users/paciente-about/<%= datos[i].id%>" class="btn btn-info btn-sm">Ver Más</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <% } %>
-                                <% } else { %>
-                                    <tr>
-                                        <td colspan="6" class="text-center text-muted py-4">
-                                            No hay nutricionistas registrados en el sistema
-                                        </td>
-                                    </tr>
+                            <% } %>
                                 <% } %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                                    <% } else { %>
+                                        <option value="">No existen patolgoias en el sistema</option>
+                                        <% } %>
+            </select>                                                    
+                        </div>
+                        <div class="col-sm-12">
+                           <button class="send_btn">Añadir</button>  
+                        </div>
+                     </div>
+                  </form>
+               </div>
             </div>
-        </div>
-    </div>
-</div>      
+            </div>
+         </div>
+      </div> 
       <!--  footer -->
       <footer>
          <div class="footer">

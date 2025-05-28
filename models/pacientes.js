@@ -1,6 +1,14 @@
 const conexion = require("../conexion"); // Asegúrate que esta ruta sea correcta
 
 module.exports = {
+    obtenerPatologia(){
+        return new Promise((resolve, reject)=>{
+            conexion.query('SELECT * FROM patologia', (err, resultados)=>{
+                if (err) reject(err);
+                else resolve(resultados);
+            });
+        })
+    },
     pacientes(idNutricionista){
         return new Promise ((resolve, reject) =>{
             conexion.query('SELECT * FROM paciente WHERE nutricionistas_id = ?',
@@ -19,41 +27,68 @@ module.exports = {
                 [idPaciente], (err, resultados) =>{ // ¡Ajustado: (err, resultados)!
                     if (err) reject(err);
                     else {
-                        if (resultados.length === 0) {
-                            return reject(new Error('Paciente no encontrado')); // Manejo de paciente no encontrado
-                        }
-                        resolve(resultados[0]); // Devuelve el primer (y único) resultado
+                        resolve(resultados); 
                     }
                 }
             );
         });
     },
+    agregarPaciente(nombres, apellidos, cedula, edad, fecha_nacimiento, telefono, email, direccion, sexo, ant_familiares, alergias, ant_personales, ant_psicologicos, patologia_id, nutricionistas_id){
+        return new Promise ((resolve, reject)=>{
+            conexion.query('INSERT INTO paciente (nombres, apellidos, cedula, edad, fecha_de_nacimiento, telefono, correo, direccion, condicion, ant_familiares, alergias, ant_personales, ant_psicologicos, patologia_id, nutricionistas_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                [nombres, apellidos, cedula, edad, fecha_nacimiento, telefono, email, direccion, sexo, ant_familiares, alergias, ant_personales, ant_psicologicos, patologia_id, nutricionistas_id], (err, resultados) =>{
+                    if (err) reject(err);
+                    else resolve(resultados);
+                }
+            )
+        })
+    },
+    editarPaciente(nombres, apellidos, cedula, edad, fecha_nacimiento, telefono, email, direccion, sexo, ant_familiares, alergias, ant_personales, ant_psicologicos, patologia_id, id){
+        return new Promise ((resolve, reject)=>{
+            conexion.query('UPDATE paciente SET nombres = ?, apellidos = ?, cedula = ?, edad = ?, fecha_de_nacimiento = ?, telefono = ?, correo = ?, direccion = ?, condicion = ?, ant_familiares = ?, alergias = ?, ant_personales = ?, ant_psicologicos = ?, patologia_id = ? WHERE id = ?', 
+                [nombres, apellidos, cedula, edad, fecha_nacimiento, telefono, email, direccion, sexo, ant_familiares, alergias, ant_personales, ant_psicologicos, patologia_id, id], (err, resultados)=>{
+                    if (err) reject(err);
+                    else resolve(resultados);
+            })
+        })
+    },
+    antecendentes(){
+        return new Promise ((resolve, reject) =>{
+            conexion.query('SELECT condicion.id AS id_condicion, condicion.nombre AS nombre_condicion FROM condicion UNION SELECT patologia.id AS id_patologia, patologia.nombre AS nombre_patologia FROM patologia UNION SELECT imc.id AS id_imc, imc.status AS status_imc', 
+            (err, resultados) =>{
+                if (err) reject(err);
+                else resolve(resultados);
+            })
+        })
+    },
+    seguimiento(id_paciente){
+        return new Promise ((resolve, reject)=>{
+            conexion.query('SELECT seguimiento.*, imc.status, condicion.nombre FROM seguimiento INNER JOIN imc ON seguimiento.imc_id = imc.id INNER JOIN condicion ON seguimiento.condicion_id = condicion.id WHERE seguimiento.paciente_id = ?',
+                [id_paciente], (err, resultados)=>{
+                    if (err) reject(err);
+                    else resolve(resultados);
+                })
+        })
+    },
+    seguimientoId(id){
+        return new Promise ((resolve, reject)=>{
+            conexion.query('SELECT seguimiento.*, imc.status, condicion.nombre FROM seguimiento INNER JOIN imc ON seguimiento.imc_id = imc.id INNER JOIN condicion ON seguimiento.condicion_id = condicion.id WHERE seguimiento.id = ?',
+                [id], (err, resultados) =>{
+                    if (err) reject(err);
+                    else resolve(resultados);
+                }
+            )
+        })
+    },
+    agregarSeguimiento(peso, talla, imc, req_calorico, paciente_id, imc_id, condicion_id){
+        return new Promise ((resolve, reject) =>{
+            conexion.query('INSERT INTO seguimiento (peso, talla, imc, req_calorico, paciente_id, imc_id, condicion_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                [peso, talla, imc, req_calorico, paciente_id, imc_id, condicion_id], (err, resultados)=>{
+                    if (err) reject(err);
+                    else resolve(resultados);
+                }
+            )
+        })
+    },
+
 };
-
-
-
-/*const conexion = require("../conexion")
-
-module.exports = {
-    pacientes(idNutricionista){
-        return new Promise ((resolve, reject) =>{
-            conexion.query('SELECT * FROM paciente WHERE nutricionistas_id = ?',
-                [idNutricionista], (resultados, err) =>{
-                    if (err) reject(err)
-                    else resolve(resultados)
-                }
-            )
-        })
-    },
-    pacienteId(idPaciente){
-        return new Promise ((resolve, reject) =>{
-            conexion.query('SELECT paciente.*,patologia.* FROM paciente,patologia WHERE id =?, patologia.id = paciente.patologia_id',
-                [idPaciente], (resultados, err) =>{
-                    if (err) reject(err)
-                    else resolve(resultados)
-                }
-            )
-        })
-    },
-
-}*/
