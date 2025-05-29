@@ -691,6 +691,13 @@ button {
      font-weight: normal;
      border-bottom: #fff solid 1px;
 }
+.form-control{
+     width: 100%;
+     border-top: none; /* Asegura que no tenga borde superior */
+    border-left: none; /* Asegura que no tenga borde izquierdo */
+    border-right: none; /* Asegura que no tenga borde derecho */
+    padding-left: 0; /* Ajusta el padding si es necesario */
+}
 
 .main_form .send_btn {
      font-size: 17px;
@@ -868,6 +875,7 @@ ul.cont li {
 /* Reutilizamos los estilos del .send_btn y los aplicamos a los botones de Bootstrap */
 .send_btn,
 .btn-danger,
+.btn-info,
 .btn-warning {
     font-size: 15px;
     padding: 10px 15px;
@@ -977,8 +985,44 @@ Y luego en tu CSS defines .custom-table
 
 .table-responsive-container {
     width: 100%;
+    max-width: 800px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
      scrollbar-width: thin; /* Firefox */
      scrollbar-color: #fd6406 #004aad; /* Firefox */
+}
+
+/*estilos para los <select>*/
+
+.form-control { /* <--- ¡Aquí está el cambio clave! */
+     width: 100%;
+    border-top: none; /* Asegura que no tenga borde superior */
+    border-left: none; /* Asegura que no tenga borde izquierdo */
+    border-right: none; /* Asegura que no tenga borde derecho */
+    padding-left: 0; /* Ajusta el padding si es necesario */
+}
+
+/* Opcional: Estilo para las opciones del select en algunos navegadores (limitado) */
+.main_form select.form-control option {
+    background-color: #004aad; /* Color de fondo del select al abrirlo, similar al .contact */
+    color: #f9fcfd; /* Color de texto de las opciones */
+}
+
+select.form-control {
+     background-color: #004aad;
+     color: #f9fcfd;
+}
+
+/* Si quieres que el foco se vea como el de los otros inputs */
+.form-control:focus {
+    border-color: #ffffff !important;
+     box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
+}
+
+/* Puedes añadir un estilo para el label si no lo tienes */
+.form-label {
+    color: #f9fcfd; /* Color de texto del label */
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: block; /* Para que ocupe su propia línea y el campo vaya debajo */
 }
