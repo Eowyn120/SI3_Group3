@@ -100,16 +100,21 @@
                            <input class="contactus" placeholder="Teléfono" type="number" name="telefono" required> 
                            <input class="contactus" placeholder="Correo Electrónico" type="email" name="email" required> 
                            <input class="contactus" placeholder="Direccion" type="text" name="direccion" required>
-                           <select name="sexo">
-                              <option value="">--Seleccione Sexo--</option>
-                              <option value="Masculino">Masculino</option>
-                              <option value="Femenino">Femenino</option>
-                           </select> 
+                           <div class="col-md-12 form-group">
+                            <label for="sexo" class="form-label">Sexo</label>
+                              <select name="sexo" id="sexo" class="form-control">
+                                 <option value="">--Seleccione Sexo--</option>
+                                 <option value="Masculino">Masculino</option>
+                                 <option value="Femenino">Femenino</option>
+                              </select>
+                           </div>
                            <input class="contactus" placeholder="Antecedentes Familiares" type="text" name="ant_familiares" required>
                            <input class="contactus" placeholder="Alergias" type="text" name="alergias" required> 
                            <input class="contactus" placeholder="Antecedentes Personales" type="text" name="ant_personales" required> 
-                           <input class="contactus" placeholder="Antecedentes Psicologicos" type="text" name="ant_psicologicos" required> 
-            <select name="patologia_id">
+                           <input class="contactus" placeholder="Antecedentes Psicologicos" type="text" name="ant_psicologicos" required>
+                           <div class="col-md-12 form-group">
+                            <label for="patolgoia" class="form-label">Patolgoias</label>
+            <select name="patologia_id" class="form-control">
                 <option value="">--Seleccione--</option>
                 <% if (datos) { %>
                     <% for (let i=0; i < datos.length; i++){ %>
@@ -123,7 +128,8 @@
                                     <% } else { %>
                                         <option value="">No existen patolgoias en el sistema</option>
                                         <% } %>
-            </select>                                                    
+            </select>             
+                           </div>                                       
                         </div>
                         <div class="col-sm-12">
                            <button class="send_btn">Añadir</button>  

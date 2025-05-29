@@ -101,11 +101,14 @@
                            <input class="contactus" placeholder="Teléfono" type="number" name="telefono" value="<%= datos[0].telefono %>" required> 
                            <input class="contactus" placeholder="Correo Electrónico" type="email" name="correo" value="<%= datos[0].correo %>" required> 
                            <input class="contactus" placeholder="Direccion" type="text" name="direccion" value="<%= datos[0].direccion %>" required>
-                           <select name="sexo">
-                              <option value="">--Seleccione Sexo--</option>
-                              <option value="Masculino">Masculino</option>
-                              <option value="Femenino">Femenino</option>
-                           </select> 
+                           <div class="col-md-12 form-group">
+                            <label for="sexo" class="form-label">Sexo</label>
+                              <select name="sexo" id="sexo" class="form-control">
+                                 <option value="">--Seleccione Sexo--</option>
+                                 <option value="Masculino">Masculino</option>
+                                 <option value="Femenino">Femenino</option>
+                              </select>
+                           </div>
                            <input class="contactus" placeholder="Antecedentes Familiares" type="text" name="ant_familiares" value="<%= datos[0].ant_familiares %>" required>
                            <input class="contactus" placeholder="Alergias" type="text" name="alergias" value="<%= datos[0].alergias %>" required> 
                            <input class="contactus" placeholder="Antecedentes Personales" type="text" name="ant_personales" value="<%= datos[0].ant_personales %>" required> 

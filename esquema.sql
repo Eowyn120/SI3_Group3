@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `nutricode`.`paciente` (
   `apellidos` VARCHAR(45) NOT NULL,
   `cedula` VARCHAR(45) NOT NULL,
   `edad` INT NOT NULL,
-  `fecha de nacimiento` DATE NOT NULL,
+  `fecha_de_nacimiento` DATE NOT NULL,
   `telefono` INT NOT NULL,
   `correo` VARCHAR(45) NOT NULL,
   `direccion` VARCHAR(45) NULL DEFAULT 'No especificada',
