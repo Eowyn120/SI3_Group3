@@ -100,37 +100,30 @@
                         <a href="/admin/patologia-add" class="send_btn" style="max-width: 300px;">Agregar Nueva Patología</a>
                     </div>
 
-                    <div class="table-responsive-container">
-                        <table border="2" class="table table-hover table-dark table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">N°</th>
-                                    <th scope="col" class="text-start">Nombre</th>
-                                    <th scope="col" class="text-center">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% if (datos && datos.length > 0) { %>
-                                    <% for (let i = 0; i < datos.length; i++) { %>
-                                        <tr>
-                                            <td class="text-center"><%= (i + 1) %></td>
-                                            <td><%= datos[i].nombre %></td> <td class="text-center">
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                    <a href="/admin/patologia-delete/<%= datos[i].id%>" class="btn btn-danger btn-sm">Eliminar</a>
-                                                    <a href="/admin/patologia-edit/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <% } %>
-                                <% } else { %>
-                                    <tr>
-                                        <td colspan="3" class="text-center text-muted py-4">
-                                            No hay patologías en el sistema
-                                        </td>
-                                    </tr>
+                    <div id="patologyListContainer" class="patology-list-container">
+                        <% if (datos && datos.length > 0) { %>
+                            <% for (let i = 0; i < datos.length; i++) { %>
+                                <div class="patology-item-wrapper">
+                                    <div class="patology-item">
+                                        <div class="patology-name-info">
+                                            <h4 class="patology-name"><%= datos[i].nombre %></h4>
+                                            <p class="patology-id-info">N: <%= datos[i].id %></p>
+                                        </div>
+                                        <div class="patology-actions">
+                                            <a href="/admin/patologia-delete/<%= datos[i].id%>" class="btn btn-danger btn-sm">Eliminar</a>
+                                            <a href="/admin/patologia-edit/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% if (i < datos.length - 1) { %>
+                                    <hr class="patology-separator">
                                 <% } %>
-                            </tbody>
-                        </table>
+                            <% } %>
+                        <% } else { %>
+                            <div class="text-center text-muted py-4">
+                                No hay patologías en el sistema.
+                            </div>
+                        <% } %>
                     </div>
                 </div>
             </div>

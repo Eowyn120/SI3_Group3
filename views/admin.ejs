@@ -83,45 +83,74 @@
       <!-- end header inner -->
       <!-- end header -->
 
-<div id="contact" class="contact">
+      <div id="contact" class="contact">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="titlepage">
-                    <h2>Nutricionistas Registrados</h2> </div>
+                    <h2>Nutricionistas Registrados</h2>
+                </div>
             </div>
             <div class="col-md-10 offset-md-1">
                 <div class="main_form">
-
-                    <div class="table-responsive-container">
-                        <table border="2" class="table table-hover table-dark table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">N°</th>
-                                    <th scope="col" class="text-start">Nombres</th>
-                                    <th scope="col" class="text-start">Apellidos</th>
-                                    <th scope="col" class="text-start">Correo Electrónico</th>
-                                    </tr>
-                            </thead>
-                            <tbody>
-                                <% if (datos && datos.length > 0) { %>
-                                    <% for (let i = 0; i < datos.length; i++){ %>
-                                        <tr>
-                                            <td class="text-center"><%= (i + 1) %></td>
-                                            <td><%= datos[i].nombres %></td>
-                                            <td><%= datos[i].apellidos %></td>
-                                            <td><%= datos[i].email %></td>
-                                            </tr>
-                                    <% } %>
-                                <% } else { %>
-                                    <tr>
-                                        <td colspan="4" class="text-center text-muted py-4">
-                                            No hay nutricionistas registrados en el sistema
-                                        </td>
-                                    </tr>
-                                <% } %>
-                            </tbody>
-                        </table>
+                    <div id="nutricionistListContainer" class="nutricionist-list-container">
+                        <% if (datos && datos.length > 0) { %>
+                            <% for (let i = 0; i < datos.length; i++){ %>
+                                <% const uniqueId = `${datos[i].nombres.replace(/\s/g, '')}${datos[i].apellidos.replace(/\s/g, '')}`; %>
+                                <div class="nutricionist-item-wrapper">
+                                    <div class="nutricionist-item">
+                                        <div class="nutricionist-name-info">
+                                            <h4 class="nutricionist-name"><%= datos[i].nombres %></h4>
+                                            <p class="nutricionist-id-info">Correo: <%= datos[i].email %></p>
+                                        </div>
+                                        <div class="nutricionist-actions-summary">
+                                            <button class="btn btn-primary btn-sm toggle-nutricionist-details" data-nutricionist-id="<%= uniqueId %>">
+                                                Ver Información
+                                            </button>
+                                            <a href="/admin/edit-nutricionista/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>
+                                        </div>
+                                    </div>
+                                    <div id="nutricionistDetails_<%= uniqueId %>" class="nutricionist-details-hidden">
+                                        <div class="nutricionist-card">
+                                            <div class="nutricionist-details-grid">
+                                                <div class="detail-item">
+                                                    <span class="detail-label">Nombres:</span> 
+                                                    <span class="detail-value"><%= datos[i].nombres %></span>
+                                                </div>
+                                                <div class="detail-item">
+                                                    <span class="detail-label">Apellidos:</span> 
+                                                    <span class="detail-value"><%= datos[i].apellidos %></span>
+                                                </div>
+                                                <div class="detail-item">
+                                                    <span class="detail-label">Correo Electrónico:</span> 
+                                                    <span class="detail-value"><%= datos[i].email %></span>
+                                                </div>
+                                                <% if (datos[i].telefono) { %>
+                                                <div class="detail-item">
+                                                    <span class="detail-label">Teléfono:</span> 
+                                                    <span class="detail-value"><%= datos[i].telefono %></span>
+                                                </div>
+                                                <% } %>
+                                                <% if (datos[i].especialidad) { %>
+                                                <div class="detail-item">
+                                                    <span class="detail-label">Especialidad:</span> 
+                                                    <span class="detail-value"><%= datos[i].especialidad %></span>
+                                                </div>
+                                                <% } %>
+                                            </div>
+                                            <!--<div class="d-grid gap-2 d-md-flex justify-content-md-end nutricionist-detail-actions mt-3">
+                                                <a href="/admin/nutricionista-about/<%= datos[i].id%>" class="btn btn-info btn-sm">Ver Perfil Completo</a>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="nutricionist-separator">
+                            <% } %>
+                        <% } else { %>
+                            <div class="text-center text-muted py-4">
+                                No hay nutricionistas registrados en el sistema.
+                            </div>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -154,6 +183,7 @@
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="../js/custom.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script src="../js/custom-script.js"></script>
    </body>
 </html>
 
