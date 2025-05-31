@@ -80,63 +80,103 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-<div id="contact" class="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="titlepage">
-                    <h2>Pacientes Registrados</h2> </div>
-            </div>
-            <div class="col-md-10 offset-md-1">
-                <div class="main_form">
-
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
-                        <a href="/users/paciente-add" class="send_btn" style="max-width: 280px;">Registrar Nuevo Paciente</a>
+    <div id="contact" class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="titlepage">
+                        <h2>Pacientes Registrados</h2>
                     </div>
+                </div>
+                <div class="col-md-10 offset-md-1">
+                    <div class="main_form">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
+                            <a href="/users/paciente-add" class="send_btn" style="max-width: 280px;">Registrar Nuevo Paciente</a>
+                        </div>
 
-                    <div class="table-responsive-container">
-                        <table border="2" class="table table-hover table-dark table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">N°</th>
-                                    <th scope="col" class="text-start">Nombres</th>
-                                    <th scope="col" class="text-start">Apellidos</th>
-                                    <th scope="col" class="text-start">Edad</th>
-                                    <th scope="col" class="text-start">Teléfono</th>                                    
-                                    <th scope="col" class="text-center">Acciones</th> </tr>
-                            </thead>
-                            <tbody>
-                                <% if (datos && datos.length > 0) { %>
-                                    <% for (let i = 0; i < datos.length; i++){ %>
-                                        <tr>
-                                            <td class="text-center"><%= (i + 1) %></td>
-                                            <td><%= datos[i].nombres %></td>
-                                            <td><%= datos[i].apellidos %></td>
-                                            <td><%= datos[i].edad %></td>
-                                            <td><%= datos[i].telefono %></td>
-                                            <td class="text-center">
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                    <a href="/users/paciente-about/<%= datos[i].id%>" class="btn btn-info btn-sm">Ver Más</a>
-                                                    <a href="/users/paciente-edit/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>                                                
+                        <div id="patientListContainer" class="patient-list-container">
+                            <% if (datos && datos.length > 0) { %>
+                                <% for (let i = 0; i < datos.length; i++){ %>
+                                    <div class="patient-item-wrapper">
+                                        <div class="patient-item">
+                                            <div class="patient-name-info">
+                                                <h4 class="patient-name"><%= datos[i].nombres %> <%= datos[i].apellidos %></h4>
+                                                <p class="patient-id-info">Cédula: <%= datos[i].cedula %></p>
+                                            </div>
+                                            <div class="patient-actions-summary">
+                                                <button class="btn btn-primary btn-sm toggle-patient-details" data-patient-id="<%= datos[i].id%>">
+                                                    Ver Información
+                                                </button>
+                                                <a href="/users/paciente-edit/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>
+                                            </div>
+                                        </div>
+                                        <div id="patientDetails_<%= datos[i].id%>" class="patient-details-hidden">
+                                            <div class="patient-card">
+                                                <div class="patient-details-grid">
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Edad:</span> 
+                                                        <span class="detail-value"><%= datos[i].edad %></span>
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Fecha de Nacimiento:</span> 
+                                                        <span class="detail-value"><%= datos[i].fecha_de_nacimiento %></span>
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Teléfono:</span> 
+                                                        <span class="detail-value"><%= datos[i].telefono %></span>
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Correo Electrónico:</span> 
+                                                        <span class="detail-value"><%= datos[i].correo %></span>
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Dirección:</span> 
+                                                        <span class="detail-value"><%= datos[i].direccion %></span>
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Condición:</span> 
+                                                        <span class="detail-value"><%= datos[i].condicion %></span>
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Ant. Familiares:</span> 
+                                                        <span class="detail-value"><%= datos[i].ant_familiares %></span>
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Alergias:</span> 
+                                                        <span class="detail-value"><%= datos[i].alergias %></span>
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Ant. Personales:</span> 
+                                                        <span class="detail-value"><%= datos[i].ant_personales %></span>
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Ant. Psicológicos:</span> 
+                                                        <span class="detail-value"><%= datos[i].ant_psicologicos %></span>
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <span class="detail-label">Patología:</span> 
+                                                        <span class="detail-value"><%= datos[i].nombre_patologia %></span>
+                                                    </div>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    <% } %>
-                                <% } else { %>
-                                    <tr>
-                                        <td colspan="6" class="text-center text-muted py-4">
-                                            No hay nutricionistas registrados en el sistema
-                                        </td>
-                                    </tr>
+                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end patient-detail-actions mt-3">
+                                                    <a href="/users/paciente-about/<%= datos[i].id%>" class="btn btn-info btn-sm">Ver Perfil Completo</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="patient-separator">
                                 <% } %>
-                            </tbody>
-                        </table>
+                            <% } else { %>
+                                <div class="text-center text-muted py-4">
+                                    No hay pacientes registrados en el sistema.
+                                </div>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>      
       <!--  footer -->
       <footer>
          <div class="footer">
@@ -162,6 +202,7 @@
       <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="/js/custom.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script src="../js/custom-script.js"></script>
    </body>
 </html>
 

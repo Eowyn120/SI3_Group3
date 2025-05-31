@@ -93,44 +93,36 @@
                     <h2>Administrar Categorías IMC</h2>
                 </div>
             </div>
-            <div class="col-md-8 offset-md-2">
-                <div class="main_form">
+            <div class="col-md-10 offset-md-1"> <div class="main_form">
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
                         <a href="/admin/imc-add" class="send_btn" style="max-width: 330px;">Agregar Nueva Categoría IMC</a>
                     </div>
 
-                    <div class="table-responsive-container">
-                        <table border="2" class="table table-hover table-dark table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">N°</th>
-                                    <th scope="col" class="text-start">Nombre</th>
-                                    <th scope="col" class="text-center">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% if (datos && datos.length > 0) { %>
-                                    <% for (let i = 0; i < datos.length; i++) { %>
-                                        <tr>
-                                            <td class="text-center"><%= (i + 1) %></td>
-                                            <td><%= datos[i].status %></td> <td class="text-center">
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                    <a href="/admin/imc-delete/<%= datos[i].id%>" class="btn btn-danger btn-sm">Eliminar</a>
-                                                    <a href="/admin/imc-edit/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <% } %>
-                                <% } else { %>
-                                    <tr>
-                                        <td colspan="3" class="text-center text-muted py-4">
-                                            No hay categorías de IMC en el sistema
-                                        </td>
-                                    </tr>
+                    <div id="imcCategoryListContainer" class="imc-category-list-container">
+                        <% if (datos && datos.length > 0) { %>
+                            <% for (let i = 0; i < datos.length; i++) { %>
+                                <div class="imc-category-item-wrapper">
+                                    <div class="imc-category-item">
+                                        <div class="imc-category-name-info">
+                                            <h4 class="imc-category-name"><%= datos[i].status %></h4>
+                                            <p class="imc-category-id-info">N: <%= datos[i].id %></p>
+                                        </div>
+                                        <div class="imc-category-actions">
+                                            <a href="/admin/imc-delete/<%= datos[i].id%>" class="btn btn-danger btn-sm">Eliminar</a>
+                                            <a href="/admin/imc-edit/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% if (i < datos.length - 1) { %>
+                                    <hr class="imc-category-separator">
                                 <% } %>
-                            </tbody>
-                        </table>
+                            <% } %>
+                        <% } else { %>
+                            <div class="text-center text-muted py-4">
+                                No hay categorías de IMC en el sistema.
+                            </div>
+                        <% } %>
                     </div>
                 </div>
             </div>

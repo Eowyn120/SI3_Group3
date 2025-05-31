@@ -55,7 +55,7 @@ router.get('/paciente-about/:id', function(req, res, next){
     pacientesmodel
     .pacienteId(id)
     .then((datos)=>{
-      res.render('paciente', {datos: datos}); //No me esta renderizando la pagina y no entiendo pero si llega la funcion hasta aqui
+      res.render('paciente', {datos: datos}); 
     })
     .catch((err)=>{
       return res.status(500).send("Error buscando al paciente");

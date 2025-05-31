@@ -82,78 +82,140 @@
       <!-- end header inner -->
       <!-- end header -->
 
-<div id="contact" class="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="titlepage">
-                    <h2>Paciente Encontrado</h2> </div>
-            </div>
-            <div class="col-md-10 offset-md-1">
-                <div class="main_form">
+    <div id="mainContentSection" class="contact">
+        <div class="container">
+            <div class="button-controls">
+                <button id="toggleContentButton">Mostrar Información de Pacientes</button>
+                <button id="addQueryButton">Agregar Consulta</button>
+                </div>
 
-                    <div class="table-responsive-container">
-                        <table border="2" class="table table-hover table-dark table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">N°</th>
-                                    <th scope="col" class="text-start">Nombres</th>
-                                    <th scope="col" class="text-start">Apellidos</th>
-                                    <th scope="col" class="text-start">Cedula</th>
-                                    <th scope="col" class="text-center">Edad</th>
-                                    <th scope="col" class="text-start">Fecha de Nacimiento</th>
-                                    <th scope="col" class="text-start">Teléfono</th>
-                                    <th scope="col" class="text-start">Correo Electrónico</th>
-                                    <th scope="col" class="text-center">Direccion</th>
-                                    <th scope="col" class="text-start">Condicion</th>
-                                    <th scope="col" class="text-start">Ant. Familiares</th>
-                                    <th scope="col" class="text-start">Alergias</th>
-                                    <th scope="col" class="text-center">Ant. Personales</th>
-                                    <th scope="col" class="text-start">Ant. Psicologicos</th>
-                                    <th scope="col" class="text-start">Patologia</th>
-                                    <th scope="col" class="text-center">Acciones</th> </tr>
-                            </thead>
-                            <tbody>
-                                <% if (datos && datos.length > 0) { %>
-                                    <% for (let i = 0; i < datos.length; i++){ %>
-                                        <tr>
-                                            <td class="text-center"><%= (i + 1) %></td>
-                                            <td><%= datos[i].nombres %></td>
-                                            <td><%= datos[i].apellidos %></td>
-                                            <td><%= datos[i].cedula %></td>
-                                            <td><%= datos[i].edad %></td>                          
-                                            <td><%= datos[i].fecha_de_nacimiento %></td>
-                                            <td><%= datos[i].telefono %></td>
-                                            <td><%= datos[i].correo %></td>                                
-                                            <td><%= datos[i].direccion %></td>
-                                            <td><%= datos[i].condicion %></td>
-                                            <td><%= datos[i].ant_familiares %></td>
-                                            <td><%= datos[i].alergias %></td>
-                                            <td><%= datos[i].ant_personales %></td>                                                          
-                                            <td><%= datos[i].ant_psicologicos %></td>
-                                            <td><%= datos[i].nombre_patologia %></td>                                        
-                                            <td class="text-center">
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                    <a href="/users/paciente-edit/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <% } %>
-                                <% } else { %>
-                                    <tr>
-                                        <td colspan="15" class="text-center text-muted py-4">
-                                            No hay nutricionistas registrados en el sistema
-                                        </td>
-                                    </tr>
-                                <% } %>
-                            </tbody>
-                        </table>
+            <div id="patientInfoContainer" class="content-hidden">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="titlepage">
+                            <h2>Paciente Encontrado</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-10 offset-md-1">
+                        <div class="main_form">
+                            <% if (datos && datos.length > 0) { %>
+                                <% for (let i = 0; i < datos.length; i++){ %>
+                                    <div class="patient-card">
+                                        <h3>Paciente <%= (i + 1) %>: <%= datos[i].nombres %> <%= datos[i].apellidos %></h3>
+                                        
+                                        <div class="patient-details-grid">
+                                            <div class="detail-item">
+                                                <span class="detail-label">Cédula:</span> 
+                                                <span class="detail-value"><%= datos[i].cedula %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Edad:</span> 
+                                                <span class="detail-value"><%= datos[i].edad %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Fecha de Nacimiento:</span> 
+                                                <span class="detail-value"><%= datos[i].fecha_de_nacimiento %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Teléfono:</span> 
+                                                <span class="detail-value"><%= datos[i].telefono %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Correo Electrónico:</span> 
+                                                <span class="detail-value"><%= datos[i].correo %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Dirección:</span> 
+                                                <span class="detail-value"><%= datos[i].direccion %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Condición:</span> 
+                                                <span class="detail-value"><%= datos[i].condicion %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Ant. Familiares:</span> 
+                                                <span class="detail-value"><%= datos[i].ant_familiares %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Alergias:</span> 
+                                                <span class="detail-value"><%= datos[i].alergias %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Ant. Personales:</span> 
+                                                <span class="detail-value"><%= datos[i].ant_personales %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Ant. Psicológicos:</span> 
+                                                <span class="detail-value"><%= datos[i].ant_psicologicos %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Patología:</span> 
+                                                <span class="detail-value"><%= datos[i].nombre_patologia %></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end patient-actions">
+                                            <a href="/users/paciente-edit/<%= datos[i].id%>" class="btn btn-warning btn-sm">Actualizar</a>
+                                        </div>
+                                    </div>
+                                    <hr class="patient-separator"> <% } %>
+                            <% } else { %>
+                                <div class="text-center text-muted py-4">
+                                    No hay pacientes registrados en el sistema.
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="consultasHistoryContainer" class="content-visible mt-4"> <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="titlepage">
+                            <h2>Historial de Consultas</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-10 offset-md-1">
+                        <div class="main_form">
+                            <div class="consultation-card">
+                                <h4>Consulta del 2025-05-30</h4>
+                                <div class="consultation-details">
+                                    <p><span class="detail-label">Motivo:</span> Revisión de progreso.</p>
+                                    <p><span class="detail-label">Peso:</span> 75 kg</p>
+                                    <p><span class="detail-label">Altura:</span> 1.75 m</p>
+                                    <p><span class="detail-label">IMC:</span> 24.49 (Normal)</p>
+                                    <p><span class="detail-label">Observaciones:</span> Paciente mostrando buena adherencia al plan. Se recomienda mantener el enfoque en la hidratación.</p>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end consultation-actions">
+                                    <button class="btn btn-info btn-sm">Ver Detalle Completo</button>
+                                </div>
+                            </div>
+                            <hr class="patient-separator">
+                            
+                            <div class="consultation-card">
+                                <h4>Consulta del 2025-04-15</h4>
+                                <div class="consultation-details">
+                                    <p><span class="detail-label">Motivo:</span> Primera evaluación.</p>
+                                    <p><span class="detail-label">Peso:</span> 78 kg</p>
+                                    <p><span class="detail-label">Altura:</span> 1.75 m</p>
+                                    <p><span class="detail-label">IMC:</span> 25.51 (Sobrepeso)</p>
+                                    <p><span class="detail-label">Observaciones:</span> Inicio de plan nutricional para pérdida de peso. Énfasis en hábitos saludables.</p>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end consultation-actions">
+                                    <button class="btn btn-info btn-sm">Ver Detalle Completo</button>
+                                </div>
+                            </div>
+                            <hr class="patient-separator">
+
+                            <div class="text-center text-muted py-4">
+                                <p>Este es un ejemplo de historial de consultas. Más adelante se llenará dinámicamente.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>    
+    </div>    
       <!--  footer -->
       <footer>
          <div class="footer">
@@ -179,6 +241,7 @@
       <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="/js/custom.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script src="/js/custom-script.js"></script>
    </body>
 </html>
 

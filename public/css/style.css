@@ -1026,3 +1026,624 @@ select.form-control {
     margin-bottom: 5px;
     display: block; /* Para que ocupe su propia línea y el campo vaya debajo */
 }
+
+
+/* ... (tu CSS existente, lo he dejado igual en la parte de arriba) ... */
+
+
+/* Estilos para las nuevas estructuras de paciente */
+
+.patient-card {
+    background-color: rgba(0, 74, 173, 0.6); /* Un poco más claro que el .contact */
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px; /* Espacio entre cada tarjeta de paciente */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    color: #f9fcfd; /* Texto claro */
+}
+
+.patient-card h3 {
+    color: #f9fcfd; /* Un color de acento para el título del paciente */
+    margin-bottom: 25px;
+    font-size: 28px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.patient-details-grid {
+    display: grid; /* Usamos CSS Grid para el diseño */
+    gap: 15px 20px; /* Espacio entre las filas y columnas */
+    /* Definimos el número de columnas y cómo se distribuyen.
+       Podemos usar repeat(auto-fit, minmax(250px, 1fr)) para que las columnas se ajusten automáticamente.
+       Esto significa que intentará tener columnas de al menos 250px, expandiéndose si hay espacio. */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    margin-bottom: 25px;
+}
+
+.detail-item {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo sutil para cada item de detalle */
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex; /* Usamos flexbox dentro de cada item para alinear etiqueta y valor */
+    flex-direction: column; /* La etiqueta arriba, el valor abajo */
+    align-items: flex-start; /* Alinea el texto a la izquierda */
+}
+
+.detail-label {
+    font-weight: 600; /* Negrita para la etiqueta */
+    color: #f9fcfd; /* Color de acento para las etiquetas */
+    font-size: 14px;
+    margin-bottom: 3px; /* Pequeño espacio entre etiqueta y valor */
+}
+
+.detail-value {
+    font-size: 16px;
+    word-wrap: break-word; /* Rompe palabras largas para evitar desbordamiento */
+    color: #f9fcfd; /* Color del valor */
+}
+
+.patient-actions {
+    margin-top: 20px;
+    display: flex; /* Usa flexbox para los botones */
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 10px; /* Espacio entre botones */
+}
+
+.patient-separator {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+    margin: 40px 0; /* Más espacio para separar las tarjetas */
+}
+
+/* Estilos para "No hay pacientes registrados" */
+.text-muted {
+    color: rgba(249, 252, 253, 0.8) !important; /* Asegura que el texto sea visible */
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Ajustes para los botones heredados */
+.btn-warning {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+}
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Si agregas un botón tipo "Ver Historial" */
+/* .btn-info {
+    background-color: #17a2b8;
+    color: #fff;
+    border: none;
+}
+.btn-info:hover {
+    background-color: #138496;
+} */
+
+
+/*
+   Reglas de medios para hacer el diseño más adaptable a diferentes tamaños de pantalla.
+   Esto es crucial para que se vea bien en móviles y escritorios.
+*/
+@media (max-width: 768px) {
+    .patient-details-grid {
+        grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+    }
+    .patient-card h3 {
+        font-size: 24px;
+    }
+    .detail-item {
+        flex-direction: row; /* En pantallas más pequeñas, quizás prefieras etiqueta y valor en la misma línea */
+        justify-content: space-between; /* Espacio entre ellos */
+        align-items: center;
+        padding: 8px 12px;
+    }
+    .detail-label {
+        margin-bottom: 0;
+        margin-right: 10px; /* Pequeño espacio entre etiqueta y valor en línea */
+    }
+    .patient-actions {
+        flex-direction: column; /* Botones apilados en móviles */
+        align-items: stretch; /* Estira los botones para ocupar el ancho completo */
+    }
+    .patient-actions .btn {
+        width: 100%;
+        margin-bottom: 10px; /* Espacio entre botones apilados */
+    }
+}
+
+@media (max-width: 480px) {
+    .patient-card {
+        padding: 15px;
+    }
+    .patient-card h3 {
+        font-size: 20px;
+    }
+    .detail-label, .detail-value {
+        font-size: 14px;
+    }
+}
+
+
+/* Tu CSS de tabla existente (que ya no se usará directamente para los pacientes, pero lo dejo por si tienes otras tablas) */
+/* --- Estilos para la tabla en general --- */
+/* Fondo de la tabla (sobrescribe table-dark) */
+.table {
+    background-color: rgba(0, 74, 173, 0.5); /* Un azul oscuro con transparencia, como el de tu .contact */
+    color: #f9fcfd; /* Color de texto general para la tabla (casi blanco) */
+    border-radius: 8px; /* Bordes ligeramente redondeados para la tabla completa */
+    overflow: hidden; /* Asegura que los bordes redondeados se vean bien con el contenido */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Un borde sutil */
+}
+/* ... (resto de tus estilos de tabla existentes) ... */
+
+
+
+
+
+
+/* Estilos para el contenedor de botones */
+.button-controls {
+    display: flex; /* Para que los botones se coloquen en fila */
+    gap: 15px; /* Espacio entre los botones */
+    margin-bottom: 25px; /* Espacio debajo de los botones */
+    justify-content: center; /* Centrar los botones horizontalmente */
+    padding-top: 30px; /* Espacio superior para separar del header */
+}
+
+/* Estilos generales para los botones */
+.button-controls button {
+    padding: 12px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el botón de Mostrar/Ocultar */
+#toggleContentButton {
+    background-color: #28a745; /* Color verde */
+    color: white;
+}
+
+#toggleContentButton:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el ratón */
+    transform: translateY(-2px);
+}
+
+/* Estilo para el botón de Agregar Consulta */
+#addQueryButton {
+    background-color: #007bff; /* Color azul */
+    color: white;
+}
+
+#addQueryButton:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+    transform: translateY(-2px);
+}
+
+/* Clases para ocultar/mostrar el contenido del paciente */
+.content-hidden {
+    display: none; /* Oculta el contenido por defecto */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.content-visible {
+    display: block; /* Muestra el contenido */
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    /* Puedes añadir más estilos para el contenedor visible aquí */
+
+}
+
+h4,
+p {
+     color: #f9fcfd;
+}
+
+
+
+
+
+/* ... (tus estilos existentes, como .loader_bg, .header, etc.) ... */
+
+/* Clases para ocultar/mostrar contenido (si aún las usas en otras partes) */
+.content-hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.content-visible {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Estilos para el contenedor de botones global (Registrar Nuevo Paciente) */
+.d-grid.gap-2.d-md-flex.justify-content-md-center.mb-4 {
+    margin-top: 30px; /* Asegura un buen espacio sobre el botón */
+}
+
+/* --- Estilos para la nueva lista de pacientes --- */
+
+.patient-list-container {
+     /* Fondo ligero para la lista */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.patient-item-wrapper {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden; /* Para que el borde redondeado se aplique bien */
+    transition: box-shadow 0.3s ease;
+}
+
+.patient-item-wrapper:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.patient-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+     /* Color de fondo para la barra de resumen */
+    cursor: pointer; /* Indica que es interactuable */
+    transition: background-color 0.3s ease;
+}
+
+/*.patient-item:hover {
+    background-color: #e9e9e9;
+}*/
+
+.patient-name-info {
+    flex-grow: 1; /* Permite que el nombre ocupe el espacio disponible */
+}
+
+.patient-name {
+    margin: 0;
+    color: #f9fcfd;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.patient-id-info {
+    margin: 5px 0 0;
+    color: #f9fcfd;
+    font-size: 0.9em;
+}
+
+.patient-actions-summary {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.toggle-patient-details {
+    /* Estilos base del botón de despliegue */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-patient-details:hover {
+    background-color: #0056b3;
+}
+
+/* Clase para ocultar el contenido de los detalles del paciente */
+.patient-details-hidden {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out, max-height 0.7s ease-in-out;
+}
+
+/* Clase para mostrar el contenido de los detalles del paciente */
+.patient-details-visible {
+    display: block;
+    opacity: 1;
+    max-height: 1150px; /* Suficientemente grande para el contenido */
+    padding: 20px; /* Añade padding cuando está visible */
+    transition: opacity 0.5s ease-in-out, max-height 0.7s ease-in-out;
+}
+
+/* Estilos para la tarjeta de paciente dentro del desplegable (reutilizados del anterior) */
+.patient-card {
+    border: none; /* Ya tiene borde el wrapper */
+    border-radius: 0; /* Ya tiene borde el wrapper */
+    padding: 0; /* El padding se lo da .patient-details-visible */
+    margin-bottom: 0;
+    box-shadow: none; /* El shadow se lo da el wrapper */
+}
+
+
+
+/* ... (todos los estilos anteriores que te di para patient-list-container, patient-item-wrapper, etc. se mantienen) ... */
+
+/* Estilos para el contenedor de acciones dentro de los detalles desplegados */
+.patient-detail-actions {
+    margin-top: 20px; /* Espacio superior para separar del grid de detalles */
+    padding-top: 15px; /* Espacio interno superior */
+    border-top: 1px solid #e0e0e0; /* Un borde sutil para separar */
+}
+
+
+
+
+
+
+
+
+
+/* Para el contenedor de detalles de nutricionistas */
+.nutricionist-details-hidden {
+    display: none;
+}
+
+.nutricionist-details-visible {
+    display: block; /* O flex, si tu diseño lo requiere */
+}
+
+/* También revisa los estilos para las "cards" en general si no los tienes */
+.nutricionist-item-wrapper {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.nutricionist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+.nutricionist-name-info {
+    flex-grow: 1;
+}
+.nutricionist-name {
+    margin: 0;
+    font-size: 1.3em;
+    color: #f9fcfd;
+}
+.nutricionist-id-info {
+    margin: 0;
+    font-size: 0.9em;
+    color: #ccc;
+}
+.nutricionist-actions-summary .btn {
+    margin-left: 10px;
+}
+.nutricionist-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px 20px;
+    padding: 20px; /* Asegúrate de que tenga padding */
+}
+.detail-item {
+    padding: 5px 0;
+    border-bottom: 1px dashed #6c757d;
+}
+.detail-item:last-child {
+    border-bottom: none;
+}
+.detail-label {
+    font-weight: bold;
+    color: #adb5bd;
+}
+.detail-value {
+    color: #f8f9fa;
+}
+.nutricionist-detail-actions {
+    margin-top: 15px;
+    text-align: right;
+}
+.nutricionist-separator {
+    border-top: 2px solid #6c757d;
+    margin: 20px 0;
+}
+
+
+
+
+
+
+
+/* Estilos para el contenedor de categorías de IMC */
+.imc-category-list-container {
+    margin-top: 20px;
+}
+
+/* Estilos para cada "card" de categoría IMC */
+.imc-category-item-wrapper {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+
+    color: #fff; /* Texto blanco */
+}
+
+.imc-category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+
+}
+
+.imc-category-name-info {
+    flex-grow: 1; /* Permite que la información del nombre ocupe el espacio restante */
+}
+
+.imc-category-name {
+    margin: 0;
+    font-size: 1.3em;
+    color: #f9fcfd; /* Color que resalte para el nombre */
+}
+
+.imc-category-id-info {
+    margin: 0;
+    font-size: 0.9em;
+    color: #ccc; /* Color sutil para el ID */
+}
+
+/*.imc-category-actions {
+     Puedes ajustar el espaciado entre los botones aquí 
+}*/
+
+.imc-category-actions .btn {
+    margin-left: 10px; /* Espacio entre los botones de acción */
+}
+
+/* Estilo para el separador (línea horizontal) entre las cards */
+.imc-category-separator {
+    border-top: 2px solid #6c757d; /* Color y grosor de la línea */
+    margin: 20px 0; /* Espacio arriba y abajo del separador */
+}
+
+/* Estilos para el mensaje de "no hay datos" */
+.text-center.text-muted.py-4 {
+    color: #6c757d !important; /* Asegura que el color sea gris claro */
+    padding: 1.5rem 0 !important; /* Espaciado interno */
+}
+
+
+
+
+
+
+
+
+/* Estilos para el contenedor de la lista de condiciones */
+.condition-list-container {
+    margin-top: 20px;
+}
+
+/* Estilos para cada "card" de condición */
+.condition-item-wrapper {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    color: #fff; /* Texto blanco */
+}
+
+.condition-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.condition-name-info {
+    flex-grow: 1; /* Permite que la información del nombre ocupe el espacio restante */
+}
+
+.condition-name {
+    margin: 0;
+    font-size: 1.3em;
+    color: #f9fcfd; /* Color que resalte para el nombre */
+}
+
+.condition-id-info {
+    margin: 0;
+    font-size: 0.9em;
+    color: #ccc; /* Color sutil para el ID */
+}
+
+/*.condition-actions {
+     Puedes ajustar el espaciado entre los botones aquí 
+}*/
+
+.condition-actions .btn {
+    margin-left: 10px; /* Espacio entre los botones de acción */
+}
+
+/* Estilo para el separador (línea horizontal) entre las cards */
+.condition-separator {
+    border-top: 2px solid #6c757d; /* Color y grosor de la línea */
+    margin: 20px 0; /* Espacio arriba y abajo del separador */
+}
+
+/* Estilos para el mensaje de "no hay datos" */
+/* Si ya tienes esta clase definida, no necesitas repetirla */
+.text-center.text-muted.py-4 {
+    color: #6c757d !important;
+    padding: 1.5rem 0 !important;
+}
+
+
+
+
+
+
+
+
+/* Estilos para el contenedor de la lista de patologías */
+.patology-list-container {
+    margin-top: 20px;
+}
+
+/* Estilos para cada "card" de patología */
+.patology-item-wrapper {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    color: #fff; /* Texto blanco */
+}
+
+.patology-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.patology-name-info {
+    flex-grow: 1; /* Permite que la información del nombre ocupe el espacio restante */
+}
+
+.patology-name {
+    margin: 0;
+    font-size: 1.3em;
+    color: #f9fcfd; /* Color que resalte para el nombre */
+}
+
+.patology-id-info {
+    margin: 0;
+    font-size: 0.9em;
+    color: #ccc; /* Color sutil para el ID */
+}
+
+/*.patology-actions {
+     Puedes ajustar el espaciado entre los botones aquí 
+}*/
+
+.patology-actions .btn {
+    margin-left: 10px; /* Espacio entre los botones de acción */
+}
+
+/* Estilo para el separador (línea horizontal) entre las cards */
+.patology-separator {
+    border-top: 2px solid #6c757d; /* Color y grosor de la línea */
+    margin: 20px 0; /* Espacio arriba y abajo del separador */
+}
+
+/* Estilos para el mensaje de "no hay datos" */
+/* Si ya tienes esta clase definida, no necesitas repetirla */
+.text-center.text-muted.py-4 {
+    color: #6c757d !important;
+    padding: 1.5rem 0 !important;
+}
