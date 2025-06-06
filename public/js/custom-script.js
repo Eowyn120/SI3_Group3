@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const addQueryButton = document.getElementById('addQueryButton');
     if (addQueryButton) {
         addQueryButton.addEventListener('click', function() {
-            window.location.href = '/users/agregar-consulta';
+            window.location.href = '/users/seguimiento-add';
         });
     }
 

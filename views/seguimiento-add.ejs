@@ -1,0 +1,555 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>NutriCode</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="../css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="../css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="../imagesn/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="/images/loading.gif" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+         <!-- header inner -->
+         <div class="header">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                     <div class="full">
+                        <div class="center-desk">
+                           <div class="logo">
+                              <a href="/"><img src="/imagesn/logon.png" alt="#" /></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <div class="header_information">
+                        <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                           <span class="navbar-toggler-icon"></span>
+                           </button>
+                           <div class="collapse navbar-collapse" id="navbarsExample04">
+                              <ul class="navbar-nav mr-auto">
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="/users">Inicio</a>
+                                 </li> 
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="/#">Perfil</a>
+                                 </li>
+
+                              </ul>
+                              <div class="sign_btn"><a href="/users/logout">Salir</a></div>
+                           </div>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- end header inner -->
+      <!-- end header -->
+      <div id="contact" class="contact">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 col-sm-12">
+                  <div class="titlepage">
+                     <h2>Paciente <%= datos[0].nombres%></h2>
+                  </div>
+               </div>
+               <div class="col-md-6 offset-md-3">
+                  <form id="request" class="main_form" method="post" action="/users/add-seguimiento">
+         <div class="form-group">
+            <label for="fechaSeguimiento">Fecha:</label>
+            <input type="date" id="fechaSeguimiento" name="fecha" required>
+        </div>
+        <div class="form-group">
+            <label for="motivoSeguimiento">Motivo:</label>
+            <input type="text" id="motivoSeguimiento" name="motivo" required>
+        </div>
+        <div class="form-group">
+            <label for="pesoSeguimiento">Peso (kg):</label>
+            <input type="number" id="pesoSeguimiento" name="peso" step="0.01" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="tallaSeguimiento">Talla (cm):</label>
+            <input type="number" id="tallaSeguimiento" name="talla" step="0.01" min="0" required>
+        </div>
+
+        <div class="form-group">
+            <label>IMC (kg/m²):</label>
+            <span id="imcDisplay" class="resultado-calculo">0.00</span>
+            <input type="hidden" id="imcCalculado" name="imc">
+            <input type="hidden" id="imcId" name="imc_id">
+            <span id="imcEstadoDisplay" class="resultado-calculo" style="margin-left: 10px;"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="condicionSelect">Condición:</label>
+            <select id="condicionSelect" name="condicion_id" required>
+                <option value="">Seleccione una condición</option>
+            </select>
+            <input type="hidden" id="condicionMultiplicador" name="condicion_multiplicador">
+        </div>
+
+        <div class="form-group">
+            <label>Requerimiento Calórico (Kcal):</label>
+            <span id="requerimientoCaloricoDisplay" class="resultado-calculo">0.00</span>
+            <input type="hidden" id="requerimientoCalorico" name="req_calorico">
+        </div>
+
+        <hr>
+
+        <h3>Distribución de Macronutrientes (Porcentajes)</h3>
+        <div class="form-group">
+            <label for="proteinasPorcentaje">Proteínas (%):</label>
+            <input type="number" id="proteinasPorcentaje" name="proteinas_porcentaje" min="10" max="15" step="0.01" value="10" required>
+        </div>
+        <div class="form-group">
+            <label for="lipidosPorcentaje">Lípidos (%):</label>
+            <input type="number" id="lipidosPorcentaje" name="lipidos_porcentaje" min="25" max="35" step="0.01" value="25" required>
+        </div>
+        <div class="form-group">
+            <label for="carbohidratosPorcentaje">Carbohidratos (%):</label>
+            <input type="number" id="carbohidratosPorcentaje" name="carbohidratos_porcentaje" min="55" max="60" step="0.01" value="65" required>
+            </div>
+        <div class="form-group">
+            <label>Suma Total (%):</label>
+            <span id="porcentajeTotalDisplay" class="resultado-calculo"></span>
+        </div>
+
+        <hr>
+
+        <h3>Valor Calórico y Gramaje</h3>
+        <div class="form-group">
+            <label>Calorías Proteínas:</label>
+            <span id="caloriasProteinasDisplay" class="resultado-calculo">0.00 Kcal</span>
+            <input type="hidden" id="caloriasProteinas" name="cal_p">
+        </div>
+        <div class="form-group">
+            <label>Gramaje Proteínas:</label>
+            <span id="gramajeProteinasDisplay" class="resultado-calculo">0.00 g</span>
+            <input type="hidden" id="gramajeProteinas" name="gram_p">
+        </div>
+        <div class="form-group">
+            <label>Raciones Proteínas:</label>
+            <span id="racionesProteinasDisplay" class="resultado-calculo">0.00</span>
+            <input type="hidden" id="racionesProteinas" name="rac_p">
+        </div>
+
+        <div class="form-group">
+            <label>Calorías Lípidos:</label>
+            <span id="caloriasLipidosDisplay" class="resultado-calculo">0.00 Kcal</span>
+            <input type="hidden" id="caloriasLipidos" name="cal_l">
+        </div>
+        <div class="form-group">
+            <label>Gramaje Lípidos:</label>
+            <span id="gramajeLipidosDisplay" class="resultado-calculo">0.00 g</span>
+            <input type="hidden" id="gramajeLipidos" name="gram_l">
+        </div>
+        <div class="form-group">
+            <label>Raciones Lípidos:</label>
+            <span id="racionesLipidosDisplay" class="resultado-calculo">0.00</span>
+            <input type="hidden" id="racionesLipidos" name="rac_l">
+        </div>
+
+        <div class="form-group">
+            <label>Calorías Carbohidratos:</label>
+            <span id="caloriasCarbohidratosDisplay" class="resultado-calculo">0.00 Kcal</span>
+            <input type="hidden" id="caloriasCarbohidratos" name="cal_ch">
+        </div>
+        <div class="form-group">
+            <label>Gramaje Carbohidratos:</label>
+            <span id="gramajeCarbohidratosDisplay" class="resultado-calculo">0.00 g</span>
+            <input type="hidden" id="gramajeCarbohidratos" name="gram_ch">
+        </div>
+        <div class="form-group">
+            <label>Raciones Carbohidratos:</label>
+            <span id="racionesCarbohidratosDisplay" class="resultado-calculo">0.00</span>
+            <input type="hidden" id="racionesCarbohidratos" name="rac_ch">
+        </div>
+        <div class="form-group">
+            <label for="motivoSeguimiento">Prescripción:</label>
+            <input type="text" name="prescripcion" required>
+        </div>
+        <div class="form-group">
+            <label for="motivoSeguimiento">Plan Nutricional:</label>
+            <input type="text" name="plan_nutricional" required>
+        </div>
+        <div class="form-group">
+            <label for="motivoSeguimiento">Recomendaciones:</label>
+            <input type="text" name="recomendaciones" required>
+        </div>                   
+        <button type="submit">Guardar Seguimiento y Cálculos</button>
+                  </form>
+               </div>
+            </div>
+            </div>
+         </div>
+      </div>      
+      <!--  footer -->
+      <footer>
+         <div class="footer">
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <p>© 2025 NutriCode. Todos los Derechos Reservados</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="/js/jquery.min.js"></script>
+      <script src="/js/popper.min.js"></script>
+      <script src="/js/bootstrap.bundle.min.js"></script>
+      <script src="/js/jquery-3.0.0.min.js"></script>
+    
+      <!-- sidebar -->
+      <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="/js/custom.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script>
+    // --- Datos de la Base de Datos Pasados por EJS ---
+    // Tus datos vendrán directamente como variables EJS:
+    //EL ERROR EN LAS DECLARACIONES DE ESTAS DOS VARIABLES SON UN FALSO POSITIVO DEL AUTOCORRECTOR DE VSC
+    const imcEstados = <%- JSON.stringify(imc) %>;
+    const condicionesDB = <%- JSON.stringify(condicion) %>;
+
+
+
+    // --- Referencias a los elementos del DOM ---
+    const pesoSeguimientoInput = document.getElementById('pesoSeguimiento');
+    const tallaSeguimientoInput = document.getElementById('tallaSeguimiento');
+    const imcDisplay = document.getElementById('imcDisplay');
+    const imcCalculadoInput = document.getElementById('imcCalculado');
+    const imcIdInput = document.getElementById('imcId');
+    const imcEstadoDisplay = document.getElementById('imcEstadoDisplay');
+    const condicionSelect = document.getElementById('condicionSelect');
+    const condicionMultiplicadorInput = document.getElementById('condicionMultiplicador');
+    const requerimientoCaloricoDisplay = document.getElementById('requerimientoCaloricoDisplay');
+    const requerimientoCaloricoInput = document.getElementById('requerimientoCalorico');
+
+    const proteinasPorcentajeInput = document.getElementById('proteinasPorcentaje');
+    const lipidosPorcentajeInput = document.getElementById('lipidosPorcentaje');
+    const carbohidratosPorcentajeInput = document.getElementById('carbohidratosPorcentaje');
+    const porcentajeTotalDisplay = document.getElementById('porcentajeTotalDisplay');
+
+    const caloriasProteinasDisplay = document.getElementById('caloriasProteinasDisplay');
+    const caloriasProteinasInput = document.getElementById('caloriasProteinas');
+    const gramajeProteinasDisplay = document.getElementById('gramajeProteinasDisplay');
+    const gramajeProteinasInput = document.getElementById('gramajeProteinas');
+    const racionesProteinasDisplay = document.getElementById('racionesProteinasDisplay');
+    const racionesProteinasInput = document.getElementById('racionesProteinas');
+
+    const caloriasLipidosDisplay = document.getElementById('caloriasLipidosDisplay');
+    const caloriasLipidosInput = document.getElementById('caloriasLipidos');
+    const gramajeLipidosDisplay = document.getElementById('gramajeLipidosDisplay');
+    const gramajeLipidosInput = document.getElementById('gramajeLipidos');
+    const racionesLipidosDisplay = document.getElementById('racionesLipidosDisplay');
+    const racionesLipidosInput = document.getElementById('racionesLipidos');
+
+    const caloriasCarbohidratosDisplay = document.getElementById('caloriasCarbohidratosDisplay');
+    const caloriasCarbohidratosInput = document.getElementById('caloriasCarbohidratos');
+    const gramajeCarbohidratosDisplay = document.getElementById('gramajeCarbohidratosDisplay');
+    const gramajeCarbohidratosInput = document.getElementById('gramajeCarbohidratos');
+    const racionesCarbohidratosDisplay = document.getElementById('racionesCarbohidratosDisplay');
+    const racionesCarbohidratosInput = document.getElementById('racionesCarbohidratos');
+    const submitButton = document.querySelector('#request button[type="submit"]');
+
+    // --- Funciones de Cálculo ---
+
+    // --- Carga inicial de Opciones de Condición (modificado) ---
+    function cargarCondiciones() {
+        condicionSelect.innerHTML = '<option value="">Seleccione una condición</option>';
+        if (Array.isArray(condicionesDB) && condicionesDB.length > 0) {
+            condicionesDB.forEach(item => {
+                // Asegúrate de que 'item' tenga las propiedades 'id', 'nombre', y 'multiplicador'
+                const option = document.createElement('option');
+                option.value = item.id_condicion;
+                option.textContent = item.nombre_condicion; // Asegúrate de que esta propiedad exista en tus resultados de DB
+                option.dataset.multiplicador = item.multiplicador; // Asegúrate de que esta propiedad exista
+                condicionSelect.appendChild(option);
+            });
+        } else {
+            console.warn("No se encontraron condiciones o condicionesDB no es un array en el frontend.");
+        }
+    }
+
+    // --- Función para calcular IMC (sin cambios en la lógica, solo usa 'imcEstados') ---
+    function calcularIMC() {
+        const peso = parseFloat(pesoSeguimientoInput.value);
+        const tallaCm = parseFloat(tallaSeguimientoInput.value);
+
+        if (isNaN(peso) || isNaN(tallaCm) || peso <= 0 || tallaCm <= 0) {
+            imcDisplay.textContent = '0.00';
+            imcCalculadoInput.value = '';
+            imcEstadoDisplay.textContent = '';
+            imcIdInput.value = '';
+            return 0;
+        }
+
+        const tallaM = tallaCm / 100;
+        const imcVal = peso / (tallaM * tallaM); // Renombré a imcVal para evitar conflicto con la variable 'imcEstados'
+        imcDisplay.textContent = imcVal.toFixed(2);
+        imcCalculadoInput.value = imcVal.toFixed(2);
+
+        if (Array.isArray(imcEstados) && imcEstados.length > 0) {
+             const estadoImc = imcEstados.find(estado => imcVal >= estado.min && imcVal <= estado.max);
+             if (estadoImc) {
+                 imcEstadoDisplay.textContent = `(${estadoImc.status_imc})`; // Asegúrate de que 'status' exista
+                 imcIdInput.value = estadoImc.id_imc;
+             } else {
+                 imcEstadoDisplay.textContent = '(Indefinido)';
+                 imcIdInput.value = '';
+             }
+        } else {
+            console.error("La variable imcEstados no es un array o está vacía en el frontend. Verifica la data.");
+            imcEstadoDisplay.textContent = '(Error de datos)';
+            imcIdInput.value = '';
+        }
+        return imcVal;
+    }
+
+    function calcularRequerimientoCalorico() {
+        const peso = parseFloat(pesoSeguimientoInput.value);
+        const multiplicadorCondicion = parseFloat(condicionMultiplicadorInput.value);
+
+        if (isNaN(peso) || isNaN(multiplicadorCondicion) || peso <= 0 || multiplicadorCondicion <= 0) {
+            requerimientoCaloricoDisplay.textContent = '0.00';
+            requerimientoCaloricoInput.value = '';
+            return 0;
+        }
+
+        const requerimiento = peso * multiplicadorCondicion;
+        requerimientoCaloricoDisplay.textContent = requerimiento.toFixed(2);
+        requerimientoCaloricoInput.value = requerimiento.toFixed(2);
+        return requerimiento;
+    }
+
+    function calcularMacronutrientes() {
+        const totalCalorias = parseFloat(requerimientoCaloricoInput.value);
+        const percProteinas = parseFloat(proteinasPorcentajeInput.value);
+        const percLipidos = parseFloat(lipidosPorcentajeInput.value);
+        const percCarbohidratos = parseFloat(carbohidratosPorcentajeInput.value);
+
+        // Suma de porcentajes y ajuste
+        const sumaPorcentajes = percProteinas + percLipidos + percCarbohidratos;
+        porcentajeTotalDisplay.textContent = `${sumaPorcentajes.toFixed(2)}%`;
+
+        if (sumaPorcentajes.toFixed(2) !== '100.00') {
+            porcentajeTotalDisplay.style.color = 'red';
+            submitButton.disabled = true; // Deshabilita el botón si no suma 100
+        } else {
+            porcentajeTotalDisplay.style.color = 'green';
+            submitButton.disabled = false; // Habilita el botón si suma 100
+        }
+
+
+        if (isNaN(totalCalorias) || totalCalorias <= 0) {
+            // Resetear todos los displays si no hay calorias válidas
+            const resetVal = '0.00';
+            caloriasProteinasDisplay.textContent = caloriasProteinasInput.value = resetVal + ' Kcal';
+            gramajeProteinasDisplay.textContent = gramajeProteinasInput.value = resetVal + ' g';
+            racionesProteinasDisplay.textContent = racionesProteinasInput.value = resetVal;
+            // ... y así para lípidos y carbohidratos
+            caloriasLipidosDisplay.textContent = caloriasLipidosInput.value = resetVal + ' Kcal';
+            gramajeLipidosDisplay.textContent = gramajeLipidosInput.value = resetVal + ' g';
+            racionesLipidosDisplay.textContent = racionesLipidosInput.value = resetVal;
+            caloriasCarbohidratosDisplay.textContent = caloriasCarbohidratosInput.value = resetVal + ' Kcal';
+            gramajeCarbohidratosDisplay.textContent = gramajeCarbohidratosInput.value = resetVal + ' g';
+            racionesCarbohidratosDisplay.textContent = racionesCarbohidratosInput.value = resetVal;
+            return;
+        }
+
+        // --- Calorías por Macronutriente ---
+        const calProteinas = (totalCalorias * percProteinas) / 100;
+        const calLipidos = (totalCalorias * percLipidos) / 100;
+        const calCarbohidratos = (totalCalorias * percCarbohidratos) / 100;
+
+        caloriasProteinasDisplay.textContent = `${calProteinas.toFixed(2)} Kcal`;
+        caloriasProteinasInput.value = calProteinas.toFixed(2);
+        caloriasLipidosDisplay.textContent = `${calLipidos.toFixed(2)} Kcal`;
+        caloriasLipidosInput.value = calLipidos.toFixed(2);
+        caloriasCarbohidratosDisplay.textContent = `${calCarbohidratos.toFixed(2)} Kcal`;
+        caloriasCarbohidratosInput.value = calCarbohidratos.toFixed(2);
+
+        // --- Gramaje por Macronutriente ---
+        // Proteínas: 4 Kcal/g | Lípidos: 9 Kcal/g | Carbohidratos: 4 Kcal/g
+        const gramProteinas = calProteinas / 4;
+        const gramLipidos = calLipidos / 9;
+        const gramCarbohidratos = calCarbohidratos / 4;
+
+        gramajeProteinasDisplay.textContent = `${gramProteinas.toFixed(2)} g`;
+        gramajeProteinasInput.value = gramProteinas.toFixed(2);
+        gramajeLipidosDisplay.textContent = `${gramLipidos.toFixed(2)} g`;
+        gramajeLipidosInput.value = gramLipidos.toFixed(2);
+        gramajeCarbohidratosDisplay.textContent = `${gramCarbohidratos.toFixed(2)} g`;
+        gramajeCarbohidratosInput.value = gramCarbohidratos.toFixed(2);
+
+        // --- Raciones por Macronutriente ---
+        // Proteínas: 7g/ración | Lípidos: 9g/ración | Carbohidratos: 15g/ración
+        const racionesProteinas = gramProteinas / 7;
+        const racionesLipidos = gramLipidos / 9;
+        const racionesCarbohidratos = gramCarbohidratos / 15;
+
+        racionesProteinasDisplay.textContent = racionesProteinas.toFixed(2);
+        racionesProteinasInput.value = racionesProteinas.toFixed(2);
+        racionesLipidosDisplay.textContent = racionesLipidos.toFixed(2);
+        racionesLipidosInput.value = racionesLipidos.toFixed(2);
+        racionesCarbohidratosDisplay.textContent = racionesCarbohidratos.toFixed(2);
+        racionesCarbohidratosInput.value = racionesCarbohidratos.toFixed(2);
+    }
+
+    // --- Función Principal para Actualizar Todos los Cálculos ---
+    function actualizarTodosLosCalculos() {
+        calcularIMC();
+        calcularRequerimientoCalorico();
+        calcularMacronutrientes();
+    }
+
+    // --- Event Listeners ---
+    document.addEventListener('DOMContentLoaded', () => {
+        cargarCondiciones();
+        // Establece una fecha por defecto para el input de fecha (hoy)
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('fechaSeguimiento').value = today;
+
+        // Si ya tienes valores iniciales para peso/talla, IMC se calculará
+        // O si ya tienes una condición seleccionada, el requerimiento se calculará
+        actualizarTodosLosCalculos(); // Ejecutar al cargar para cálculos iniciales
+    });
+
+    // Eventos para actualizar cálculos en tiempo real
+    pesoSeguimientoInput.addEventListener('input', actualizarTodosLosCalculos);
+    tallaSeguimientoInput.addEventListener('input', actualizarTodosLosCalculos);
+
+    condicionSelect.addEventListener('change', () => {
+        const selectedOption = condicionSelect.options[condicionSelect.selectedIndex];
+        condicionMultiplicadorInput.value = selectedOption.dataset.multiplicador || ''; // Guarda el multiplicador
+        actualizarTodosLosCalculos();
+    });
+
+    proteinasPorcentajeInput.addEventListener('input', () => {
+        const lipidos = parseFloat(lipidosPorcentajeInput.value) || 0;
+        const carbohidratos = parseFloat(carbohidratosPorcentajeInput.value) || 0;
+        let proteinas = parseFloat(proteinasPorcentajeInput.value) || 0;
+
+        // Si el usuario excede el 15%, lo limitamos
+        if (proteinas > 15) {
+            proteinas = 15;
+            proteinasPorcentajeInput.value = 15;
+        }
+        // Ajustamos los carbohidratos para que sumen 100% si es posible
+        let remaining = 100 - proteinas - lipidos;
+        if (remaining < 55) remaining = 55; // Mínimo para carbohidratos
+        if (remaining > 60) remaining = 60; // Máximo para carbohidratos
+
+        carbohidratosPorcentajeInput.value = remaining.toFixed(2);
+        actualizarTodosLosCalculos();
+    });
+
+    lipidosPorcentajeInput.addEventListener('input', () => {
+        const proteinas = parseFloat(proteinasPorcentajeInput.value) || 0;
+        let lipidos = parseFloat(lipidosPorcentajeInput.value) || 0;
+        const carbohidratos = parseFloat(carbohidratosPorcentajeInput.value) || 0;
+
+        // Si el usuario excede el 35%, lo limitamos
+        if (lipidos > 35) {
+            lipidos = 35;
+            lipidosPorcentajeInput.value = 35;
+        }
+
+        // Ajustamos los carbohidratos para que sumen 100% si es posible
+        let remaining = 100 - proteinas - lipidos;
+        if (remaining < 55) remaining = 55; // Mínimo para carbohidratos
+        if (remaining > 60) remaining = 60; // Máximo para carbohidratos
+
+        carbohidratosPorcentajeInput.value = remaining.toFixed(2);
+        actualizarTodosLosCalculos();
+    });
+
+    carbohidratosPorcentajeInput.addEventListener('input', () => {
+        const proteinas = parseFloat(proteinasPorcentajeInput.value) || 0;
+        const lipidos = parseFloat(lipidosPorcentajeInput.value) || 0;
+        let carbohidratos = parseFloat(carbohidratosPorcentajeInput.value) || 0;
+
+        // Si el usuario excede el 60%, lo limitamos
+        if (carbohidratos > 60) {
+            carbohidratos = 60;
+            carbohidratosPorcentajeInput.value = 60;
+        }
+        // Aseguramos que la suma sea 100% ajustando ligeramente proteínas o lípidos
+        let currentTotal = proteinas + lipidos + carbohidratos;
+        if (currentTotal !== 100) {
+            let diff = 100 - currentTotal;
+            // Intenta ajustar proteínas o lípidos si están dentro de su rango
+            if (proteinas + diff >= 10 && proteinas + diff <= 15) {
+                proteinasPorcentajeInput.value = (proteinas + diff).toFixed(2);
+            } else if (lipidos + diff >= 25 && lipidos + diff <= 35) {
+                lipidosPorcentajeInput.value = (lipidos + diff).toFixed(2);
+            } else {
+                 // Si no se puede ajustar en rangos, se distribuirá el resto en carbohidratos, aunque exceda el rango.
+                 // Este es un caso límite para asegurar el 100% de suma si los rangos son muy restrictivos.
+                 // Una mejor UX sería forzar al usuario a que la suma dé 100% dentro de los rangos.
+                 carbohidratosPorcentajeInput.value = (carbohidratos + diff).toFixed(2);
+            }
+        }
+        actualizarTodosLosCalculos();
+    });
+
+
+    // --- Envío del Formulario ---
+    const seguimientoCalculosForm = document.getElementById('request');
+    seguimientoCalculosForm.addEventListener('submit', function(event) {
+        // Validación final de los porcentajes antes del envío
+        const totalPorcentajes = parseFloat(proteinasPorcentajeInput.value) + parseFloat(lipidosPorcentajeInput.value) + parseFloat(carbohidratosPorcentajeInput.value);
+
+        if (totalPorcentajes.toFixed(2) !== '100.00') {
+            event.preventDefault(); // IMPORTANTE: Detiene el envío del formulario
+            alert('¡Advertencia! Los porcentajes de macronutrientes deben sumar exactamente 100%. Por favor, ajústelos antes de enviar.');
+            // Opcional: podrías enfocar el primer campo con error, etc.
+            return; // Sale de la función y evita el envío
+        }
+        console.log("Formulario validado y se enviará a través del action.");
+        alert("Formulario validado. Enviando..."); // Puedes poner un mensaje breve
+    });
+
+</script>
+   </body>
+</html>
+

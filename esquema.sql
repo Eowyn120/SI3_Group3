@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `nutricode`.`paciente` (
   `cedula` VARCHAR(45) NOT NULL,
   `edad` INT NOT NULL,
   `fecha_de_nacimiento` DATE NOT NULL,
-  `telefono` INT NOT NULL,
+  `telefono` VARCHAR(45) NOT NULL,
   `correo` VARCHAR(45) NOT NULL,
   `direccion` VARCHAR(45) NULL DEFAULT 'No especificada',
   `condicion` VARCHAR(45) NOT NULL,
@@ -93,6 +93,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `nutricode`.`seguimiento` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `motivo` VARCHAR(45) NOT NULL,
+  `fecha` DATE NOT NULL,
   `peso` FLOAT NOT NULL,
   `talla` FLOAT NOT NULL,
   `imc` FLOAT NOT NULL,

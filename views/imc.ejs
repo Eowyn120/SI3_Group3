@@ -105,8 +105,10 @@
                                 <div class="imc-category-item-wrapper">
                                     <div class="imc-category-item">
                                         <div class="imc-category-name-info">
-                                            <h4 class="imc-category-name"><%= datos[i].status %></h4>
+                                            <h4 class="imc-category-name"><%= datos[i].status %></h4>                                           
                                             <p class="imc-category-id-info">N: <%= datos[i].id %></p>
+                                            <p class="imc-category-id-info">Minimo: <%= datos[i].min %></p>
+                                            <p class="imc-category-id-info">Maximo: <%= datos[i].max %></p>                                             
                                         </div>
                                         <div class="imc-category-actions">
                                             <a href="/admin/imc-delete/<%= datos[i].id%>" class="btn btn-danger btn-sm">Eliminar</a>

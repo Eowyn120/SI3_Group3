@@ -61,7 +61,7 @@ router.post('/login', function(req, res, next){
         req.session.iduser= concat2;
         res.redirect('/users');
       }else{
-        res.send('esto no funciona')
+        res.send('CREDENCIALES INCORRECTAS')
       }
     })
     .catch((err) => {

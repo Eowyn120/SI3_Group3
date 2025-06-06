@@ -71,19 +71,19 @@ module.exports = {
                 });
         })
     },
-    insertarImc(status){
+    insertarImc(status, min, max){
         return new Promise((resolve, reject)=>{
-            conexion.query('INSERT INTO imc (status) VALUES (?)',
-                [status], (err, resultados)=>{
+            conexion.query('INSERT INTO imc (status, min, max) VALUES (?, ?, ?)',
+                [status, min, max], (err, resultados)=>{
                     if (err) reject(err);
                     else resolve(resultados);
                 })
         })
     },
-    editarImc(id, status){
+    editarImc(id, status, min, max){
         return new Promise((resolve, reject)=>{
-            conexion.query('UPDATE imc SET status = ? WHERE id = ?', 
-                [status, id], (err, resultados)=>{
+            conexion.query('UPDATE imc SET status = ?, min = ?, max = ? WHERE id = ?', 
+                [status, min, max, id], (err, resultados)=>{
                    if (err) reject(err);
                    else resolve(resultados); 
                 });
@@ -115,19 +115,19 @@ module.exports = {
                 });
         })
     },
-    insertarCondicion(nombre){
+    insertarCondicion(nombre, multiplicador){
         return new Promise((resolve, reject)=>{
-            conexion.query('INSERT INTO condicion (nombre) VALUES (?)',
-                [nombre], (err, resultados)=>{
+            conexion.query('INSERT INTO condicion (nombre, multiplicador) VALUES (?, ?)',
+                [nombre, multiplicador], (err, resultados)=>{
                     if (err) reject(err);
                     else resolve(resultados);
                 })
         })
     },
-    editarCondicion(id, nombre){
+    editarCondicion(id, nombre, multiplicador){
         return new Promise((resolve, reject)=>{
-            conexion.query('UPDATE condicion SET nombre = ? WHERE id = ?', 
-                [nombre, id], (err, resultados)=>{
+            conexion.query('UPDATE condicion SET nombre = ?, multiplicador = ? WHERE id = ?', 
+                [nombre, multiplicador, id], (err, resultados)=>{
                    if (err) reject(err);
                    else resolve(resultados); 
                 });

@@ -172,9 +172,9 @@ router.get('/imc-add', function(req, res, next){
 });
 
 router.post('/add-imc', function(req, res, next){
-  const {status} = req.body;
+  const {status, min, max} = req.body;
   adminModels
-  .insertarImc(status)
+  .insertarImc(status, min, max)
   .then(()=>{
     res.redirect('/admin/imc');
   })
@@ -203,9 +203,9 @@ router.get('/imc-edit/:id', function(req, res, next){
 
 router.post('/imc-update/:id', function(req, res, next){
   const id = req.params.id;
-  const {status} = req.body;
+  const {status, min, max} = req.body;
   adminModels
-  .editarImc(id, status)
+  .editarImc(id, status, min, max)
   .then(()=>{
     res.redirect('/admin/imc')
   })
@@ -270,9 +270,9 @@ router.get('/condicion-add', function(req, res, next){
 });
 
 router.post('/add-condicion', function(req, res, next){
-  const {nombre} = req.body;
+  const {nombre, multiplicador} = req.body;
   adminModels
-  .insertarCondicion(nombre)
+  .insertarCondicion(nombre, multiplicador)
   .then(()=>{
     res.redirect('/admin/condicion');
   })
@@ -301,9 +301,9 @@ router.get('/condicion-edit/:id', function(req, res, next){
 
 router.post('/condicion-update/:id', function(req, res, next){
   const id = req.params.id;
-  const {nombre} = req.body;
+  const {nombre, multiplicador} = req.body;
   adminModels
-  .editarCondicion(id, nombre)
+  .editarCondicion(id, nombre, multiplicador)
   .then(()=>{
     res.redirect('/admin/condicion');
   })

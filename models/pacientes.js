@@ -11,7 +11,7 @@ module.exports = {
     },
     pacientes(idNutricionista){
         return new Promise ((resolve, reject) =>{
-            conexion.query('SELECT * FROM paciente WHERE nutricionistas_id = ?',
+            conexion.query('SELECT paciente.*, patologia.nombre AS nombre_patologia FROM paciente INNER JOIN patologia ON paciente.patologia_id = patologia.id WHERE nutricionistas_id = ?',
                 [idNutricionista], (err, resultados) =>{ // ¡Importante: el orden del callback es (error, resultados)!
                     if (err) reject(err);
                     else resolve(resultados);
@@ -19,15 +19,17 @@ module.exports = {
             );
         });
     },
-    pacienteId(idPaciente){
+    pacienteId(id){
         return new Promise ((resolve, reject) =>{
             // Corrección: el callback es (err, resultados)
             // Y la consulta puede ser más específica para la patología
             conexion.query('SELECT paciente.*, patologia.nombre AS nombre_patologia FROM paciente INNER JOIN patologia ON paciente.patologia_id = patologia.id WHERE paciente.id = ?',
-                [idPaciente], (err, resultados) =>{ // ¡Ajustado: (err, resultados)!
+                [id], (err, resultados) =>{ // ¡Ajustado: (err, resultados)!
                     if (err) reject(err);
                     else {
                         resolve(resultados); 
+                        console.log("llega aqui models");
+                        
                     }
                 }
             );
@@ -52,43 +54,4 @@ module.exports = {
             })
         })
     },
-    antecendentes(){
-        return new Promise ((resolve, reject) =>{
-            conexion.query('SELECT condicion.id AS id_condicion, condicion.nombre AS nombre_condicion FROM condicion UNION SELECT patologia.id AS id_patologia, patologia.nombre AS nombre_patologia FROM patologia UNION SELECT imc.id AS id_imc, imc.status AS status_imc', 
-            (err, resultados) =>{
-                if (err) reject(err);
-                else resolve(resultados);
-            })
-        })
-    },
-    seguimiento(id_paciente){
-        return new Promise ((resolve, reject)=>{
-            conexion.query('SELECT seguimiento.*, imc.status, condicion.nombre FROM seguimiento INNER JOIN imc ON seguimiento.imc_id = imc.id INNER JOIN condicion ON seguimiento.condicion_id = condicion.id WHERE seguimiento.paciente_id = ?',
-                [id_paciente], (err, resultados)=>{
-                    if (err) reject(err);
-                    else resolve(resultados);
-                })
-        })
-    },
-    seguimientoId(id){
-        return new Promise ((resolve, reject)=>{
-            conexion.query('SELECT seguimiento.*, imc.status, condicion.nombre FROM seguimiento INNER JOIN imc ON seguimiento.imc_id = imc.id INNER JOIN condicion ON seguimiento.condicion_id = condicion.id WHERE seguimiento.id = ?',
-                [id], (err, resultados) =>{
-                    if (err) reject(err);
-                    else resolve(resultados);
-                }
-            )
-        })
-    },
-    agregarSeguimiento(peso, talla, imc, req_calorico, paciente_id, imc_id, condicion_id){
-        return new Promise ((resolve, reject) =>{
-            conexion.query('INSERT INTO seguimiento (peso, talla, imc, req_calorico, paciente_id, imc_id, condicion_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
-                [peso, talla, imc, req_calorico, paciente_id, imc_id, condicion_id], (err, resultados)=>{
-                    if (err) reject(err);
-                    else resolve(resultados);
-                }
-            )
-        })
-    },
-
 };
