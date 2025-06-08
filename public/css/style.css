@@ -401,7 +401,7 @@ button {
      background: #fafcfd;
      border-radius: 20px;
      /*qutar la linea de abajo para que no le salga un  borde negro a los circulitos*/
-     border: 1px solid black;
+
 }
 
 .carousel-control-next-icon,
@@ -663,7 +663,7 @@ button {
 
 /** contact section **/
 
-.contact {
+/*.contact {
      background: #004aad;
      padding: 90px 0;
      max-width: 800px;
@@ -671,8 +671,8 @@ button {
      margin-left: auto;
      margin-right: auto;
      border-radius: 12%;
-     box-shadow: -5px 5px 30px 0px #004aad; /* Ejemplo de sombra */
-}
+     box-shadow: -5px 5px 30px 0px #004aad; /* Ejemplo de sombra }*/
+
 
 .contact .titlepage h2 {
      color: #fff;
@@ -691,13 +691,13 @@ button {
      font-weight: normal;
      border-bottom: #fff solid 1px;
 }
-.form-control{
+/*.form-control{
      width: 100%;
-     border-top: none; /* Asegura que no tenga borde superior */
-    border-left: none; /* Asegura que no tenga borde izquierdo */
-    border-right: none; /* Asegura que no tenga borde derecho */
-    padding-left: 0; /* Ajusta el padding si es necesario */
-}
+     border-top: none; /* Asegura que no tenga borde superior *
+    border-left: none; /* Asegura que no tenga borde izquierdo *
+    border-right: none; /* Asegura que no tenga borde derecho *
+    padding-left: 0; /* Ajusta el padding si es necesario }*/
+
 
 .main_form .send_btn {
      font-size: 17px;
@@ -858,7 +858,7 @@ ul.cont li {
 .contact {
     background: #004aad;
     padding: 90px 0;
-    max-width: 800px;
+    max-width: 760px;
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
@@ -1171,13 +1171,13 @@ select.form-control {
 
 /* Tu CSS de tabla existente (que ya no se usará directamente para los pacientes, pero lo dejo por si tienes otras tablas) */
 /* --- Estilos para la tabla en general --- */
-/* Fondo de la tabla (sobrescribe table-dark) */
+/* Fondo de la tabla (sobrescribe table-dark) 
 .table {
-    background-color: rgba(0, 74, 173, 0.5); /* Un azul oscuro con transparencia, como el de tu .contact */
-    color: #f9fcfd; /* Color de texto general para la tabla (casi blanco) */
-    border-radius: 8px; /* Bordes ligeramente redondeados para la tabla completa */
-    overflow: hidden; /* Asegura que los bordes redondeados se vean bien con el contenido */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Un borde sutil */
+    background-color: rgba(0, 74, 173, 0.5); /* Un azul oscuro con transparencia, como el de tu .contact *
+    color: #f9fcfd; /* Color de texto general para la tabla (casi blanco) *
+    border-radius: 8px; /* Bordes ligeramente redondeados para la tabla completa *
+    overflow: hidden; /* Asegura que los bordes redondeados se vean bien con el contenido *
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Un borde sutil *
 }
 /* ... (resto de tus estilos de tabla existentes) ... */
 
@@ -1228,28 +1228,10 @@ select.form-control {
     transform: translateY(-2px);
 }
 
-/* Clases para ocultar/mostrar el contenido del paciente */
-.content-hidden {
-    display: none; /* Oculta el contenido por defecto */
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.content-visible {
-    display: block; /* Muestra el contenido */
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-    /* Puedes añadir más estilos para el contenedor visible aquí */
-
-}
-
 h4,
 p {
      color: #f9fcfd;
 }
-
-
-
 
 
 /* ... (tus estilos existentes, como .loader_bg, .header, etc.) ... */
@@ -1646,4 +1628,130 @@ p {
 .text-center.text-muted.py-4 {
     color: #6c757d !important;
     padding: 1.5rem 0 !important;
+}
+
+
+
+/* Nuevas clases para el estilo más simple y fiel */
+
+/* Títulos de sección más simples */
+.section-title-simple {
+    color: #ffc107; /* Color de acento */
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 15px; /* Menos margen que la versión anterior */
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Línea divisoria sutil */
+    padding-bottom: 8px;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    box-sizing: border-box; /* Incluye padding en el ancho */
+}
+
+/* Etiquetas para los inputs directos */
+.input-label-simple {
+    display: block; /* Cada label en su propia línea */
+    color: #f9fcfd; /* Color de texto claro */
+    font-size: 16px;
+    margin-bottom: 5px; /* Espacio entre label y input */
+    margin-top: 15px; /* Espacio antes de cada nueva sección de input */
+    font-weight: 600; /* Un poco más de grosor */
+}
+
+/* Contenedor para campos con cálculo y su resultado (ej. IMC, Requerimiento) */
+.form-group-calculated {
+    background-color: rgba(0, 0, 0, 0.1); /* Fondo sutil para agrupar label y resultado */
+    padding: 10px 15px;
+    margin-bottom: 15px; /* Espacio entre estos grupos */
+    border-radius: 5px;
+    display: flex; /* Para alinear label y span en la misma línea */
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    justify-content: space-between; /* Para que label y resultado se separen */
+}
+
+.form-group-calculated .input-label-simple {
+    margin: 0; /* Elimina márgenes extra dentro del grupo */
+    flex-grow: 1; /* Permite que la etiqueta crezca */
+    margin-right: 10px; /* Espacio entre etiqueta y resultado */
+}
+
+.form-group-calculated .resultado-calculo {
+    font-size: 18px;
+    font-weight: bold;
+    color: #17a2b8; /* Un color de acento para los resultados */
+    text-align: right; /* Alinea el resultado a la derecha */
+}
+
+/* Estilo para el select de Condición si se usa directamente */
+.form-group-select {
+    margin-bottom: 15px; /* Espacio debajo del select */
+}
+
+
+/* Separador más simple para las secciones */
+.form-section-separator-simple {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    margin: 30px 0; /* Espacio para separar las secciones */
+}
+
+/* Asegúrate de que tu .contactus base tenga estos estilos para los nuevos inputs */
+/* Si no tenías .contactus definido, úsalo tal cual o renómbralo a algo como .custom-input */
+.contactus {
+    background: rgba(255, 255, 255, 0.15); /* Fondo ligeramente transparente */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 15px; /* Espacio entre inputs */
+    color: #f9fcfd; /* Color de texto claro */
+    border-radius: 5px; /* Bordes ligeramente redondeados */
+    box-sizing: border-box; /* Incluye padding y border en el ancho */
+    transition: all 0.3s ease-in-out;
+}
+
+.contactus::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Color de placeholder más suave */
+}
+
+.contactus:focus {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25);
+    outline: none; /* Elimina el contorno de foco por defecto del navegador */
+}
+
+/* Estilo para los selects con clase contactus */
+select.contactus {
+    -webkit-appearance: none; /* Elimina la apariencia por defecto en Chrome/Safari */
+    -moz-appearance: none;    /* Elimina la apariencia por defecto en Firefox */
+    appearance: none;         /* Elimina la apariencia por defecto en otros navegadores */
+    
+    /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23f9fcfd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");*/
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
+
+select.contactus::-ms-expand {
+    display: none; /* Oculta la flecha por defecto en IE/Edge */
+}
+
+select.contactus option {
+    background-color: #004aad; /* Color de fondo para las opciones del select */
+    color: #f9fcfd; /* Color de texto para las opciones */
+}
+
+
+.section-title-simple {
+    color: #f9fcfd; /* Color de acento */
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 15px; /* Menos margen que la versión anterior */
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Línea divisoria sutil */
+    padding-bottom: 8px;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    box-sizing: border-box; /* Incluye padding en el ancho */
 }

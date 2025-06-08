@@ -88,130 +88,133 @@
                      <h2>Paciente <%= datos[0].nombres%></h2>
                   </div>
                </div>
-               <div class="col-md-6 offset-md-3">
+               <div class="col-md-8 offset-md-2">
                   <form id="request" class="main_form" method="post" action="/users/add-seguimiento">
-         <div class="form-group">
-            <label for="fechaSeguimiento">Fecha:</label>
-            <input type="date" id="fechaSeguimiento" name="fecha" required>
-        </div>
-        <div class="form-group">
-            <label for="motivoSeguimiento">Motivo:</label>
-            <input type="text" id="motivoSeguimiento" name="motivo" required>
-        </div>
-        <div class="form-group">
-            <label for="pesoSeguimiento">Peso (kg):</label>
-            <input type="number" id="pesoSeguimiento" name="peso" step="0.01" min="0" required>
-        </div>
-        <div class="form-group">
-            <label for="tallaSeguimiento">Talla (cm):</label>
-            <input type="number" id="tallaSeguimiento" name="talla" step="0.01" min="0" required>
-        </div>
 
-        <div class="form-group">
-            <label>IMC (kg/m²):</label>
-            <span id="imcDisplay" class="resultado-calculo">0.00</span>
-            <input type="hidden" id="imcCalculado" name="imc">
-            <input type="hidden" id="imcId" name="imc_id">
-            <span id="imcEstadoDisplay" class="resultado-calculo" style="margin-left: 10px;"></span>
-        </div>
+                     <h3 class="section-title-simple">Datos Generales del Seguimiento</h3>
+                     
+                                <label for="fechaSeguimiento" class="input-label-simple">Fecha:</label>
+                                <input type="date" id="fechaSeguimiento" name="fecha" class="contactus" required>
+                                
+                                <label for="motivoSeguimiento" class="input-label-simple">Motivo:</label>
+                                <input type="text" id="motivoSeguimiento" name="motivo" class="contactus" required placeholder="Motivo del seguimiento">
+                                
+                                <label for="pesoSeguimiento" class="input-label-simple">Peso (kg):</label>
+                                <input type="number" id="pesoSeguimiento" name="peso" step="0.01" min="0" class="contactus" required placeholder="Peso en kg">
+                                
+                                <label for="tallaSeguimiento" class="input-label-simple">Talla (cm):</label>
+                                <input type="number" id="tallaSeguimiento" name="talla" step="0.01" min="0" class="contactus" required placeholder="Talla en cm">
 
-        <div class="form-group">
-            <label for="condicionSelect">Condición:</label>
-            <select id="condicionSelect" name="condicion_id" required>
-                <option value="">Seleccione una condición</option>
-            </select>
-            <input type="hidden" id="condicionMultiplicador" name="condicion_multiplicador">
-        </div>
 
-        <div class="form-group">
-            <label>Requerimiento Calórico (Kcal):</label>
-            <span id="requerimientoCaloricoDisplay" class="resultado-calculo">0.00</span>
-            <input type="hidden" id="requerimientoCalorico" name="req_calorico">
-        </div>
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">IMC (kg/m²):</label>
+                                    <span id="imcDisplay" class="resultado-calculo">0.00</span>
+                                    <span id="imcEstadoDisplay" class="resultado-calculo imc-estado" style="margin-left: 10px;"></span>
+                                    <input type="hidden" id="imcCalculado" name="imc">
+                                    <input type="hidden" id="imcId" name="imc_id">
+                                </div>
 
-        <hr>
+                                <div class="form-group-select">
+                                    <label for="condicionSelect" class="input-label-simple">Condición:</label>
+                                    <select id="condicionSelect" name="condicion_id" class="contactus" required>
+                                        <option value="">Seleccione una condición</option>
+                                    </select>
+                                    <input type="hidden" id="condicionMultiplicador" name="condicion_multiplicador">
+                                </div>
 
-        <h3>Distribución de Macronutrientes (Porcentajes)</h3>
-        <div class="form-group">
-            <label for="proteinasPorcentaje">Proteínas (%):</label>
-            <input type="number" id="proteinasPorcentaje" name="proteinas_porcentaje" min="10" max="15" step="0.01" value="10" required>
-        </div>
-        <div class="form-group">
-            <label for="lipidosPorcentaje">Lípidos (%):</label>
-            <input type="number" id="lipidosPorcentaje" name="lipidos_porcentaje" min="25" max="35" step="0.01" value="25" required>
-        </div>
-        <div class="form-group">
-            <label for="carbohidratosPorcentaje">Carbohidratos (%):</label>
-            <input type="number" id="carbohidratosPorcentaje" name="carbohidratos_porcentaje" min="55" max="60" step="0.01" value="65" required>
-            </div>
-        <div class="form-group">
-            <label>Suma Total (%):</label>
-            <span id="porcentajeTotalDisplay" class="resultado-calculo"></span>
-        </div>
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Requerimiento Calórico (Kcal):</label>
+                                    <span id="requerimientoCaloricoDisplay" class="resultado-calculo">0.00</span>
+                                    <input type="hidden" id="requerimientoCalorico" name="req_calorico">
+                                </div>
 
-        <hr>
+                                <hr class="form-section-separator-simple">
 
-        <h3>Valor Calórico y Gramaje</h3>
-        <div class="form-group">
-            <label>Calorías Proteínas:</label>
-            <span id="caloriasProteinasDisplay" class="resultado-calculo">0.00 Kcal</span>
-            <input type="hidden" id="caloriasProteinas" name="cal_p">
-        </div>
-        <div class="form-group">
-            <label>Gramaje Proteínas:</label>
-            <span id="gramajeProteinasDisplay" class="resultado-calculo">0.00 g</span>
-            <input type="hidden" id="gramajeProteinas" name="gram_p">
-        </div>
-        <div class="form-group">
-            <label>Raciones Proteínas:</label>
-            <span id="racionesProteinasDisplay" class="resultado-calculo">0.00</span>
-            <input type="hidden" id="racionesProteinas" name="rac_p">
-        </div>
+                                <h3 class="section-title-simple">Distribución de Macronutrientes (Porcentajes)</h3>
+                                
+                                <label for="proteinasPorcentaje" class="input-label-simple">Proteínas (%):</label>
+                                <input type="number" id="proteinasPorcentaje" name="proteinas_porcentaje" min="10" max="15" step="0.01" value="10" class="contactus" required>
+                                
+                                <label for="lipidosPorcentaje" class="input-label-simple">Lípidos (%):</label>
+                                <input type="number" id="lipidosPorcentaje" name="lipidos_porcentaje" min="25" max="35" step="0.01" value="25" class="contactus" required>
+                                
+                                <label for="carbohidratosPorcentaje" class="input-label-simple">Carbohidratos (%):</label>
+                                <input type="number" id="carbohidratosPorcentaje" name="carbohidratos_porcentaje" min="55" max="60" step="0.01" value="65" class="contactus" required>
+                                
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Suma Total (%):</label>
+                                    <span id="porcentajeTotalDisplay" class="resultado-calculo"></span>
+                                </div>
 
-        <div class="form-group">
-            <label>Calorías Lípidos:</label>
-            <span id="caloriasLipidosDisplay" class="resultado-calculo">0.00 Kcal</span>
-            <input type="hidden" id="caloriasLipidos" name="cal_l">
-        </div>
-        <div class="form-group">
-            <label>Gramaje Lípidos:</label>
-            <span id="gramajeLipidosDisplay" class="resultado-calculo">0.00 g</span>
-            <input type="hidden" id="gramajeLipidos" name="gram_l">
-        </div>
-        <div class="form-group">
-            <label>Raciones Lípidos:</label>
-            <span id="racionesLipidosDisplay" class="resultado-calculo">0.00</span>
-            <input type="hidden" id="racionesLipidos" name="rac_l">
-        </div>
+                                <hr class="form-section-separator-simple">
 
-        <div class="form-group">
-            <label>Calorías Carbohidratos:</label>
-            <span id="caloriasCarbohidratosDisplay" class="resultado-calculo">0.00 Kcal</span>
-            <input type="hidden" id="caloriasCarbohidratos" name="cal_ch">
-        </div>
-        <div class="form-group">
-            <label>Gramaje Carbohidratos:</label>
-            <span id="gramajeCarbohidratosDisplay" class="resultado-calculo">0.00 g</span>
-            <input type="hidden" id="gramajeCarbohidratos" name="gram_ch">
-        </div>
-        <div class="form-group">
-            <label>Raciones Carbohidratos:</label>
-            <span id="racionesCarbohidratosDisplay" class="resultado-calculo">0.00</span>
-            <input type="hidden" id="racionesCarbohidratos" name="rac_ch">
-        </div>
-        <div class="form-group">
-            <label for="motivoSeguimiento">Prescripción:</label>
-            <input type="text" name="prescripcion" required>
-        </div>
-        <div class="form-group">
-            <label for="motivoSeguimiento">Plan Nutricional:</label>
-            <input type="text" name="plan_nutricional" required>
-        </div>
-        <div class="form-group">
-            <label for="motivoSeguimiento">Recomendaciones:</label>
-            <input type="text" name="recomendaciones" required>
-        </div>                   
-        <button type="submit">Guardar Seguimiento y Cálculos</button>
+                                <h3 class="section-title-simple">Valor Calórico y Gramaje</h3>
+
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Calorías Proteínas:</label>
+                                    <span id="caloriasProteinasDisplay" class="resultado-calculo">0.00 Kcal</span>
+                                    <input type="hidden" id="caloriasProteinas" name="cal_p">
+                                </div>
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Gramaje Proteínas:</label>
+                                    <span id="gramajeProteinasDisplay" class="resultado-calculo">0.00 g</span>
+                                    <input type="hidden" id="gramajeProteinas" name="gram_p">
+                                </div>
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Raciones Proteínas:</label>
+                                    <span id="racionesProteinasDisplay" class="resultado-calculo">0.00</span>
+                                    <input type="hidden" id="racionesProteinas" name="rac_p">
+                                </div>
+
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Calorías Lípidos:</label>
+                                    <span id="caloriasLipidosDisplay" class="resultado-calculo">0.00 Kcal</span>
+                                    <input type="hidden" id="caloriasLipidos" name="cal_l">
+                                </div>
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Gramaje Lípidos:</label>
+                                    <span id="gramajeLipidosDisplay" class="resultado-calculo">0.00 g</span>
+                                    <input type="hidden" id="gramajeLipidos" name="gram_l">
+                                </div>
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Raciones Lípidos:</label>
+                                    <span id="racionesLipidosDisplay" class="resultado-calculo">0.00</span>
+                                    <input type="hidden" id="racionesLipidos" name="rac_l">
+                                </div>
+
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Calorías Carbohidratos:</label>
+                                    <span id="caloriasCarbohidratosDisplay" class="resultado-calculo">0.00 Kcal</span>
+                                    <input type="hidden" id="caloriasCarbohidratos" name="cal_ch">
+                                </div>
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Gramaje Carbohidratos:</label>
+                                    <span id="gramajeCarbohidratosDisplay" class="resultado-calculo">0.00 g</span>
+                                    <input type="hidden" id="gramajeCarbohidratos" name="gram_ch">
+                                </div>
+                                <div class="form-group-calculated">
+                                    <label class="input-label-simple">Raciones Carbohidratos:</label>
+                                    <span id="racionesCarbohidratosDisplay" class="resultado-calculo">0.00</span>
+                                    <input type="hidden" id="racionesCarbohidratos" name="rac_ch">
+                                </div>
+
+                                <hr class="form-section-separator-simple">
+
+                                <h3 class="section-title-simple">Detalles del Seguimiento</h3>
+                                
+                                <label for="prescripcion" class="input-label-simple">Prescripción:</label>
+                                <textarea type="text" id="prescripcion" name="prescripcion" class="contactus" required placeholder="Prescripción médica"></textarea>
+                                
+                                <label for="planNutricional" class="input-label-simple">Plan Nutricional:</label>
+                                <textarea type="text" id="planNutricional" name="plan_nutricional" class="contactus" required placeholder="Detalles del plan nutricional"></textarea>
+                                
+                                <label for="recomendaciones" class="input-label-simple">Recomendaciones:</label>
+                                <textarea type="text" id="recomendaciones" name="recomendaciones" class="contactus" required placeholder="Recomendaciones adicionales"></textarea>
+
+                                    <button type="submit" class="send_btn" style="max-width: 280px;">Guardar Seguimiento y Cálculos</button>
+                            </div>
+                        </div>
+        <!--a href="#" class="send_btn" style="max-width: 280px;">Guardar Seguimiento y Cálculos</a-->
                   </form>
                </div>
             </div>
