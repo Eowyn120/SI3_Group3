@@ -169,7 +169,8 @@
                 </div>
             </div>
 
-            <div id="consultasHistoryContainer" class="content-visible mt-4"> <div class="row">
+            <div id="consultasHistoryContainer" class="content-visible mt-4">
+                <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="titlepage">
                             <h2>Historial de Consultas</h2>
@@ -177,34 +178,34 @@
                     </div>
                     <div class="col-md-10 offset-md-1">
                         <div class="main_form">
-                            <div class="consultation-card">
-                                <h4>Consulta del 2025-05-30</h4>
-                                <div class="consultation-details">
-                                    <p><span class="detail-label">Motivo:</span> Revisión de progreso.</p>
-                                    <p><span class="detail-label">Peso:</span> 75 kg</p>
-                                    <p><span class="detail-label">Altura:</span> 1.75 m</p>
-                                    <p><span class="detail-label">IMC:</span> 24.49 (Normal)</p>
-                                    <p><span class="detail-label">Observaciones:</span> Paciente mostrando buena adherencia al plan. Se recomienda mantener el enfoque en la hidratación.</p>
-                                </div>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end consultation-actions">
-                                    <button class="btn btn-info btn-sm">Ver Detalle Completo</button>
-                                </div>
-                            </div>
-                            <hr class="patient-separator">
-                            
-                            <div class="consultation-card">
-                                <h4>Consulta del 2025-04-15</h4>
-                                <div class="consultation-details">
-                                    <p><span class="detail-label">Motivo:</span> Primera evaluación.</p>
-                                    <p><span class="detail-label">Peso:</span> 78 kg</p>
-                                    <p><span class="detail-label">Altura:</span> 1.75 m</p>
-                                    <p><span class="detail-label">IMC:</span> 25.51 (Sobrepeso)</p>
-                                    <p><span class="detail-label">Observaciones:</span> Inicio de plan nutricional para pérdida de peso. Énfasis en hábitos saludables.</p>
-                                </div>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end consultation-actions">
-                                    <button class="btn btn-info btn-sm">Ver Detalle Completo</button>
-                                </div>
-                            </div>
+                            <% if (consulta && consulta.length > 0) { %>
+                                <% consulta.forEach(function(item) { %>
+                                    <div class="consultation-card">
+                                        <h4>Consulta del <%= item.fecha %></h4>
+                                        <div class="consultation-details">
+                                            <p><span class="detail-label">Motivo:</span> <%= item.motivo %></p>
+                                            <p><span class="detail-label">Peso:</span> <%= item.peso %> kg</p>
+                                            <p><span class="detail-label">Altura:</span> <%= item.talla %> m</p>
+                                            <p><span class="detail-label">IMC:</span> <%= item.imc %> (<%= item.status %>)</p>
+                                            <p><span class="detail-label">Requerimiento Calórico:</span> <%= item.req_calorico %> kcal</p>
+                                            <p><span class="detail-label">Prescripción/Observaciones:</span>
+                                                <% if (item.prescripcion) { %>
+                                                    <%= item.prescripcion %>
+                                                <% } else { %>
+                                                    No hay prescripción disponible.
+                                                <% } %>
+                                            </p>
+                                        </div>
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end consultation-actions">
+                                            <!-- Podrías usar item.id aquí para un enlace a 'Ver Detalle Completo' si tuvieras la ID de seguimiento en la consulta -->
+                                            <button id="addPatientBtn" class="btn btn-info btn-sm">Ver Detalle Completo</button>
+                                        </div>
+                                    </div>
+                                    <hr class="patient-separator">
+                                <% }); %>
+                            <% } else { %>
+                                <p class="text-center">No hay historial de consultas para mostrar para este paciente.</p>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -237,6 +238,35 @@
       <script src="/js/custom.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
       <script src="/js/custom-script.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addPatientBtn = document.getElementById('addPatientBtn');
+
+            if (addPatientBtn) {
+                // Añade un 'event listener' para el clic del botón
+                addPatientBtn.addEventListener('click', function(event) {
+                    // *** ¡ESTA ES LA LÍNEA CLAVE! ***
+                    // Previene la acción por defecto del evento.
+                    // Si el botón está dentro de un formulario y es de tipo "submit",
+                    // esto evitará que el formulario se envíe y recargue/redireccione la página.
+                    event.preventDefault(); 
+
+                    // Ahora muestra el alert tradicional de JavaScript
+                    window.alert('¡La descarga se realizo exitosamente!');
+
+                    // IMPORTANTE: Si después de mostrar el alert SÍ quieres que haya una redirección,
+                    // debes hacerla manualmente AQUÍ, después del alert.
+                    // Por ejemplo:
+                    window.location.href = '/users'; 
+                    // o para simular un envío de formulario si es necesario:
+                    // document.getElementById('tuFormularioID').submit(); 
+                });
+            } else {
+                console.error("El botón con ID 'addPatientBtn' no fue encontrado.");
+            }
+        });
+        
+      </script>      
    </body>
 </html>
 

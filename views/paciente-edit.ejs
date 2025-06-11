@@ -86,20 +86,28 @@
             <div class="row">
                <div class="col-md-12 col-sm-12">
                   <div class="titlepage">
-                     <h2>Añade una Paciente</h2>
+                     <h2>Edita el Paciente</h2>
                   </div>
                </div>
-               <div class="col-md-6 offset-md-3">
+               <div class="col-md-8 offset-md-2">
                   <form id="request" class="main_form" method="post" action="/users/paciente-update/<%= datos[0].id %>">
                      <div class="row">
                         <div class="col-md-12 ">
+                           <label class="input-label-simple">Nombres:</label>                           
                            <input class="contactus" placeholder="Nombres" type="text" name="nombres" value="<%= datos[0].nombres %>" required>
+                           <label class="input-label-simple">Apellidos:</label>
                            <input class="contactus" placeholder="Apellidos" type="text" name="apellidos" value="<%= datos[0].apellidos %>" required> 
+                           <label class="input-label-simple">Cedula:</label> 
                            <input class="contactus" placeholder="Cedula" type="number" name="cedula" value="<%= datos[0].cedula %>" required> 
-                           <input class="contactus" placeholder="Edad" type="number" name="edad" value="<%= datos[0].edad %>" required minlength="1"> 
+                           <label class="input-label-simple">Edad:</label> 
+                           <input class="contactus" placeholder="Edad" type="number" name="edad" value="<%= datos[0].edad %>" required minlength="1">
+                           <label class="input-label-simple">Fecha de Nacimiento:</label> 
                            <input class="contactus" placeholder="Fecha de Nacimiento" type="date" name="fecha_nacimiento" value="<%= datos[0].fecha_de_nacimiento %>" required> 
+                           <label class="input-label-simple">Telefono:</label>
                            <input class="contactus" placeholder="Teléfono" type="number" name="telefono" value="<%= datos[0].telefono %>" required> 
+                           <label class="input-label-simple">Correo Electronico:</label> 
                            <input class="contactus" placeholder="Correo Electrónico" type="email" name="correo" value="<%= datos[0].correo %>" required> 
+                           <label class="input-label-simple">Direccion:</label> 
                            <input class="contactus" placeholder="Direccion" type="text" name="direccion" value="<%= datos[0].direccion %>" required>
                            <div class="col-md-12 form-group">
                             <label for="sexo" class="form-label">Sexo</label>
@@ -109,13 +117,17 @@
                                  <option value="Femenino">Femenino</option>
                               </select>
                            </div>
+                            <label class="input-label-simple">Antecedentes Familiares:</label> 
                            <input class="contactus" placeholder="Antecedentes Familiares" type="text" name="ant_familiares" value="<%= datos[0].ant_familiares %>" required>
+                           <label class="input-label-simple">Alergias:</label> 
                            <input class="contactus" placeholder="Alergias" type="text" name="alergias" value="<%= datos[0].alergias %>" required> 
+                           <label class="input-label-simple">Antecedentes Personales:</label> 
                            <input class="contactus" placeholder="Antecedentes Personales" type="text" name="ant_personales" value="<%= datos[0].ant_personales %>" required> 
+                           <label class="input-label-simple">Antecedentes Psicologicos:</label> 
                            <input class="contactus" placeholder="Antecedentes Psicologicos" type="text" name="ant_psicologicos" value="<%= datos[0].ant_psicologicos %>" required>                                                   
                         </div>
                         <div class="col-sm-12">
-                           <button class="send_btn">Editar</button>  
+                           <button id="addPatientBtn" class="send_btn">Editar</button>  
                         </div>
                      </div>
                   </form>
@@ -149,6 +161,35 @@
       <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="/js/custom.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addPatientBtn = document.getElementById('addPatientBtn');
+
+            if (addPatientBtn) {
+                // Añade un 'event listener' para el clic del botón
+                addPatientBtn.addEventListener('click', function(event) {
+                    // *** ¡ESTA ES LA LÍNEA CLAVE! ***
+                    // Previene la acción por defecto del evento.
+                    // Si el botón está dentro de un formulario y es de tipo "submit",
+                    // esto evitará que el formulario se envíe y recargue/redireccione la página.
+                    event.preventDefault(); 
+
+                    // Ahora muestra el alert tradicional de JavaScript
+                    window.alert('¡La informacion ha sido editada exitosamente!');
+
+                    // IMPORTANTE: Si después de mostrar el alert SÍ quieres que haya una redirección,
+                    // debes hacerla manualmente AQUÍ, después del alert.
+                    // Por ejemplo:
+                    window.location.href = '/users'; 
+                    // o para simular un envío de formulario si es necesario:
+                    // document.getElementById('tuFormularioID').submit(); 
+                });
+            } else {
+                console.error("El botón con ID 'addPatientBtn' no fue encontrado.");
+            }
+        });
+        
+      </script>
    </body>
 </html>
 
