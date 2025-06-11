@@ -93,29 +93,35 @@
                      <h2>Registrate</h2>
                   </div>
                </div>
-               <div class="col-md-6 offset-md-3">
+               <div class="col-md-8 offset-md-2">
                   <form id="request" class="main_form" method="post" action="/register">
                      <div class="row">
                         <div class="col-md-12 ">
+                           <label class="input-label-simple">Nombres:</label>
                            <input class="contactus" placeholder="Nombres" type="text" name="nombre" required> 
                         </div>
                         <div class="col-md-12 ">
+                           <label class="input-label-simple">Apellidos:</label>
                            <input class="contactus" placeholder="Apellidos" type="text" name="apellido" required> 
                         </div>
                         <div class="col-md-12">
+                           <label class="input-label-simple">Correo Electronico:</label>
                            <input class="contactus" placeholder="Correo electronico" type="email" name="email" required> 
                         </div>
                         <div class="col-md-12">
+                           <label class="input-label-simple">Contraseña:</label>
                            <input class="contactus" placeholder="Contraseña" type="password" name="password" required>                          
                         </div>
                         <div class="col-md-12 ">
+                           <label class="input-label-simple">Pregunta secreta:</label>
                            <input class="contactus" placeholder="Pregunta secreta" type="text" name="preg" required> 
                         </div>
                         <div class="col-md-12 ">
+                           <label class="input-label-simple">Respuesta secreta:</label>
                            <input class="contactus" placeholder="Respuesta secreta" type="text" name="resp" required> 
                         </div>
                         <div class="col-sm-12">
-                           <button class="send_btn">Registrarse</button>
+                           <button id="addPatientBtn" class="send_btn">Registrarse</button>
                         </div>
                      </div>
                   </form>
@@ -150,6 +156,35 @@
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addPatientBtn = document.getElementById('addPatientBtn');
+
+            if (addPatientBtn) {
+                // Añade un 'event listener' para el clic del botón
+                addPatientBtn.addEventListener('click', function(event) {
+                    // *** ¡ESTA ES LA LÍNEA CLAVE! ***
+                    // Previene la acción por defecto del evento.
+                    // Si el botón está dentro de un formulario y es de tipo "submit",
+                    // esto evitará que el formulario se envíe y recargue/redireccione la página.
+                    event.preventDefault(); 
+
+                    // Ahora muestra el alert tradicional de JavaScript
+                    window.alert('¡Te has registrado exitosamente!');
+
+                    // IMPORTANTE: Si después de mostrar el alert SÍ quieres que haya una redirección,
+                    // debes hacerla manualmente AQUÍ, después del alert.
+                    // Por ejemplo:
+                    window.location.href = '/users'; 
+                    // o para simular un envío de formulario si es necesario:
+                    // document.getElementById('tuFormularioID').submit(); 
+                });
+            } else {
+                console.error("El botón con ID 'addPatientBtn' no fue encontrado.");
+            }
+        });
+        
+      </script>      
    </body>
 </html>
 
