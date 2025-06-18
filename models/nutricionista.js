@@ -10,13 +10,17 @@ module.exports = {
                 });
         });
     },
-    login(email){
+    login(email) { // El parámetro es 'email' porque así lo buscas en la consulta
         return new Promise((resolve, reject) => {
-            conexion.query(`SELECT id, password FROM nutricionistas WHERE email = ?`,
-                [email], (err, resultados)=>{
-                    if (err) reject(err);
-                    else resolve(resultados);
+            conexion.query(`SELECT id, nombres, password FROM nutricionistas WHERE email = ?`, // <-- ¡Añadimos 'nombres' aquí!
+                [email], (err, resultados) => {
+                    if (err) {
+                        console.error("Error en la consulta de login:", err); // Añade un log para depuración
+                        reject(err);
+                    } else {
+                        resolve(resultados);
+                    }
                 });
-        })
+        });
     },
 }

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>NutriCode</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="../css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="../css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="../imagesn/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="/images/loading.gif" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+         <!-- header inner -->
+         <div class="header">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                     <div class="full">
+                        <div class="center-desk">
+                           <div class="logo">
+                              <a href="/"><img src="/imagesn/logon.png" alt="#" /></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <div class="header_information">
+                        <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                           <span class="navbar-toggler-icon"></span>
+                           </button>
+                           <div class="collapse navbar-collapse" id="navbarsExample04">
+                              <ul class="navbar-nav mr-auto">
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="/users">Inicio</a>
+                                 </li> 
+                                 <!--li class="nav-item">
+                                    <a class="nav-link" href="/dashboard_pacientes">Estadisticas</a>
+                                 </li-->
+
+                              </ul>
+                              <div class="sign_btn"><a href="/users/logout">Salir</a></div>
+                           </div>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- end header inner -->
+      <!-- end header -->
+ <div class="container py-5">
+    <h1 class="text-center mb-5">Panel de Control de Pacientes</h1>
+
+    <div class="container-fluid mt-4"> <div class="row mb-4"> <div class="col-md-6 col-sm-12"> <div class="card h-100"> <div class="card-header">
+                    Pacientes por Edad
+                </div>
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <canvas id="edadChart" style="max-height: 300px; max-width: 300px;"></canvas>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="card h-100">
+                <div class="card-header">
+                    Pacientes por Sexo
+                </div>
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <canvas id="sexoChart" style="max-height: 300px; max-width: 300px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12"> <div class="card h-100">
+                <div class="card-header">
+                    Total de Pacientes vs. Total de Consultas
+                </div>
+                <div class="card-body">
+                    <canvas id="pacientesConsultasTotalChart" style="max-height: 350px;"></canvas>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6 col-sm-12">
+            <div class="card h-100">
+                <div class="card-header">
+                    Consultas por Sexo
+                </div>
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <canvas id="consultasSexoChart" style="max-height: 300px; max-width: 300px;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="card h-100">
+                <div class="card-header">
+                    Consultas por Estado de IMC
+                </div>
+                <div class="card-body">
+                    <canvas id="consultasImcChart" style="max-height: 350px;"></canvas>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12"> <div class="card h-100">
+                <div class="card-header">
+                    Pacientes por Patología
+                </div>
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <canvas id="patologiaChart" style="max-height: 300px; max-width: 300px;"></canvas>
+                </div>
+            </div>
+        </div>
+        </div>
+
+</div>
+</div>
+
+    
+      <!--  footer -->
+      <footer>
+         <div class="footer">
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <p>© 2025 NutriCode. Todos los Derechos Reservados</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="/js/jquery.min.js"></script>
+      <script src="/js/popper.min.js"></script>
+      <script src="/js/bootstrap.bundle.min.js"></script>
+      <script src="/js/jquery-3.0.0.min.js"></script>
+    
+      <!-- sidebar -->
+      <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="/js/custom.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script src="/node_modules/chart.js/dist/chart.umd.js"></script>
+      <script src="../js/custom-script.js"></script>
+      <script>
+        // Función para obtener y renderizar los datos
+        async function fetchAndRenderCharts() {
+            // --- Gráfico de Pacientes por Edad ---
+            try {
+                const responseEdad = await fetch('/api/data/pacientes-por-edad');
+                const dataEdad = await responseEdad.json();
+
+                const labelsEdad = dataEdad.map(item => item.edad);
+                const valuesEdad = dataEdad.map(item => item.total);
+
+                const ctxEdad = document.getElementById('edadChart').getContext('2d');
+                new Chart(ctxEdad, {
+                    type: 'bar',
+                    data: {
+                        labels: labelsEdad,
+                        datasets: [{
+                            label: 'Número de Pacientes',
+                            data: valuesEdad,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false, // Opcional, si no usas leyenda
+                                labels: {
+                                    color: 'rgba(0, 0, 0, 0.8)', // Asegúrate de que el color sea visible si lo usas
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Total de Pacientes y Total de Consultas Registradas',
+                                color: 'rgba(0, 0, 0, 0.9)',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                precision: 0,
+                                color: 'rgba(0, 0, 0, 0.7)', // Color de los números del eje Y
+                                font: {
+                                    size: 12 // Tamaño de fuente para los ticks del eje Y
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)' // Líneas de la grilla más visibles pero suaves
+                            },
+                                title: {
+                                    display: true,
+                                    text: 'Cantidad de Pacientes',
+                                    color: 'rgba(0, 0, 0, 0.8)', // Título del eje Y
+                                    font: {
+                                        size: 14 // Tamaño de fuente para el título del eje Y
+                                    }
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: 'rgba(0, 0, 0, 0.7)', // Color de las etiquetas del eje X
+                                    font: {
+                                        size: 12 // Tamaño de fuente para los ticks del eje X
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)' // Líneas de la grilla del eje X
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Edad',
+                                    color: 'rgba(0, 0, 0, 0.8)', // Título del eje X
+                                    font: {
+                                        size: 14 // Tamaño de fuente para el título del eje X
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error al cargar el gráfico de edad:', error);
+                document.getElementById('edadChart').parentElement.innerHTML = '<p>Error al cargar el gráfico de edad.</p>';
+            }
+
+            // --- Gráfico de Pacientes por Sexo (usando la columna 'condicion') ---
+            try {
+                const responseSexo = await fetch('/api/data/pacientes-por-sexo');
+                const dataSexo = await responseSexo.json();
+
+
+                // Ya que la base de datos devuelve 'Masculino' o 'Femenino' directamente,
+                // no necesitamos la transformación condicional. Simplemente mapeamos el valor.
+                const labelsSexo = dataSexo.map(item => item.sexo);
+                const valuesSexo = dataSexo.map(item => item.total);
+
+                const ctxSexo = document.getElementById('sexoChart').getContext('2d');
+                new Chart(ctxSexo, {
+                    type: 'pie', // Pie o Doughnut son ideales para distribución porcentual
+                    data: {
+                        labels: labelsSexo,
+                        datasets: [{
+                            label: 'Número de Pacientes',
+                            data: valuesSexo,
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.6)', // Azul para masculino
+                                'rgba(255, 99, 132, 0.6)', // Rosa para femenino
+                                'rgba(255, 206, 86, 0.6)' // Para otros (si los hay)
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 206, 86, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    color: 'rgba(0, 0, 0, 0.8)', // Texto de la leyenda más oscuro (casi negro)
+                                    font: {
+                                        size: 14 // Tamaño de fuente más grande para la leyenda
+                                    }
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Distribución de Pacientes por Sexo',
+                                color: 'rgba(0, 0, 0, 0.9)', // Título más oscuro
+                                font: {
+                                    size: 18 // Tamaño de fuente más grande para el título
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error al cargar el gráfico de sexo:', error);
+                document.getElementById('sexoChart').parentElement.innerHTML = '<p>Error al cargar el gráfico de sexo.</p>';
+            }
+
+            // --- Gráfico de Pacientes por Patología (Condición Médica Real) ---
+            try {
+                const responsePatologia = await fetch('/api/data/pacientes-por-patologia');
+                const dataPatologia = await responsePatologia.json();
+
+                const labelsPatologia = dataPatologia.map(item => item.patologia);
+                const valuesPatologia = dataPatologia.map(item => item.total);
+
+                const ctxPatologia = document.getElementById('patologiaChart').getContext('2d');
+                new Chart(ctxPatologia, {
+                    type: 'bar', // Un gráfico de barras es bueno para comparar conteos
+                    data: {
+                        labels: labelsPatologia,
+                        datasets: [{
+                            label: 'Número de Pacientes',
+                            data: valuesPatologia,
+                            backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                precision: 0,
+                                color: 'rgba(0, 0, 0, 0.7)', // Color de los números del eje Y
+                                font: {
+                                    size: 12 // Tamaño de fuente para los ticks del eje Y
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)' // Líneas de la grilla más visibles pero suaves
+                            },
+                                title: {
+                                    display: true,
+                                    text: 'Cantidad de Pacientes',
+                                    color: 'rgba(0, 0, 0, 0.8)', // Título del eje Y
+                                    font: {
+                                        size: 14 // Tamaño de fuente para el título del eje Y
+                                    }
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: 'rgba(0, 0, 0, 0.7)', // Color de las etiquetas del eje X
+                                    font: {
+                                        size: 12 // Tamaño de fuente para los ticks del eje X
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)' // Líneas de la grilla del eje X
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Patologias',
+                                    color: 'rgba(0, 0, 0, 0.8)', // Título del eje X
+                                    font: {
+                                        size: 14 // Tamaño de fuente para el título del eje X
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false, // Opcional, si no usas leyenda
+                                labels: {
+                                    color: 'rgba(0, 0, 0, 0.8)', // Asegúrate de que el color sea visible si lo usas
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            },                            
+                            title: {
+                                display: true,
+                                text: 'Distribución de Pacientes por Patología',
+                                color: 'rgba(0, 0, 0, 0.9)',
+                                font: {
+                                    size: 14
+                                }                                
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error al cargar el gráfico de patología:', error);
+                document.getElementById('patologiaChart').parentElement.innerHTML = '<p>Error al cargar el gráfico de patología.</p>';
+            }
+
+                // --- Gráfico de Consultas por Sexo ---
+            try {
+                // Asegúrate que la URL coincida con lo que montaste en app.js (ej. /api/consultas-por-sexo)
+                const responseConsultasSexo = await fetch('/api/consultas-por-sexo');
+                const dataConsultasSexo = await responseConsultasSexo.json();
+            
+                const labelsConsultasSexo = dataConsultasSexo.map(item => item.sexo);
+                const valuesConsultasSexo = dataConsultasSexo.map(item => item.total_consultas);
+            
+                const ctxConsultasSexo = document.getElementById('consultasSexoChart').getContext('2d');
+                new Chart(ctxConsultasSexo, {
+                    type: 'pie', // O 'bar' si prefieres barras
+                    data: {
+                        labels: labelsConsultasSexo,
+                        datasets: [{
+                            label: 'Número de Consultas',
+                            data: valuesConsultasSexo,
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.6)', // Azul (Masculino)
+                                'rgba(255, 99, 132, 0.6)'  // Rosa (Femenino)
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 99, 132, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    color: 'rgba(0, 0, 0, 0.8)', // Texto de la leyenda más oscuro (casi negro)
+                                    font: {
+                                        size: 14 // Tamaño de fuente más grande para la leyenda
+                                    }
+                                }                                
+                            },
+                            title: {
+                                display: true,
+                                text: 'Total de Consultas por Sexo',
+                                color: 'rgba(0, 0, 0, 0.9)', // Título más oscuro
+                                font: {
+                                    size: 18 // Tamaño de fuente más grande para el título
+                                }                                
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error al cargar el gráfico de consultas por sexo:', error);
+                document.getElementById('consultasSexoChart').parentElement.innerHTML = '<p>Error al cargar el gráfico de consultas por sexo.</p>';
+            }
+        
+            // --- Gráfico de Consultas por Estado de IMC ---
+            try {
+                // Asegúrate que la URL coincida con lo que montaste en app.js (ej. /api/consultas-por-imc)
+                const responseConsultasImc = await fetch('/api/consultas-por-imc');
+                const dataConsultasImc = await responseConsultasImc.json();
+            
+                const labelsConsultasImc = dataConsultasImc.map(item => item.estado_imc);
+                const valuesConsultasImc = dataConsultasImc.map(item => item.total_consultas);
+            
+                // Define una paleta de colores si hay muchas categorías de IMC
+                const imcColors = [
+                    'rgba(255, 99, 132, 0.6)',    // Desnutrición
+                    'rgba(75, 192, 192, 0.6)',    // Peso Normal
+                    'rgba(255, 205, 86, 0.6)',    // Sobrepeso
+                    'rgba(201, 203, 207, 0.6)',   // Obesidad Leve
+                    'rgba(54, 162, 235, 0.6)',    // Obesidad Media
+                    'rgba(153, 102, 255, 0.6)'    // Obesidad Mórbida
+                ];
+                const imcBorderColors = [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(201, 203, 207, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ];
+            
+                const ctxConsultasImc = document.getElementById('consultasImcChart').getContext('2d');
+                new Chart(ctxConsultasImc, {
+                    type: 'bar', // Un gráfico de barras es bueno para muchas categorías
+                    data: {
+                        labels: labelsConsultasImc,
+                        datasets: [{
+                            label: 'Número de Consultas',
+                            data: valuesConsultasImc,
+                            backgroundColor: imcColors.slice(0, labelsConsultasImc.length), // Asegura que los colores coincidan
+                            borderColor: imcBorderColors.slice(0, labelsConsultasImc.length),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false, // En barras, la leyenda no siempre es necesaria si las etiquetas son claras
+                            },
+                            title: {
+                                display: true,
+                                text: 'Total de Consultas por Estado de IMC',
+                                color: 'rgba(0, 0, 0, 0.9)',
+                                font: {
+                                    size: 14
+                                } 
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                precision: 0,
+                                color: 'rgba(0, 0, 0, 0.7)', // Color de los números del eje Y
+                                font: {
+                                    size: 12 // Tamaño de fuente para los ticks del eje Y
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)' // Líneas de la grilla más visibles pero suaves
+                            },
+                                title: {
+                                    display: true,
+                                    text: 'Total de consultas',
+                                    color: 'rgba(0, 0, 0, 0.8)', // Título del eje Y
+                                    font: {
+                                        size: 14 // Tamaño de fuente para el título del eje Y
+                                    }
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: 'rgba(0, 0, 0, 0.7)', // Color de las etiquetas del eje X
+                                    font: {
+                                        size: 12 // Tamaño de fuente para los ticks del eje X
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)' // Líneas de la grilla del eje X
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Estado de IMC',
+                                    color: 'rgba(0, 0, 0, 0.8)', // Título del eje X
+                                    font: {
+                                        size: 14 // Tamaño de fuente para el título del eje X
+                                    }
+                                }
+                            }
+                        },
+                    }
+                });
+            } catch (error) {
+                console.error('Error al cargar el gráfico de consultas por IMC:', error);
+                document.getElementById('consultasImcChart').parentElement.innerHTML = '<p>Error al cargar el gráfico de consultas por IMC.</p>';
+            }
+
+                // --- Gráfico de Total de Pacientes vs. Total de Consultas ---
+            try {
+                const responseTotales = await fetch('/api/pacientes-y-consultas-totales'); // Ajusta la URL si tu prefijo es diferente
+                const dataTotales = await responseTotales.json(); // Esperamos un objeto como: { total_pacientes: X, total_consultas: Y }
+            
+                const labelsTotales = ['Total de Pacientes', 'Total de Consultas'];
+                const valuesTotales = [dataTotales.total_pacientes, dataTotales.total_consultas];
+            
+                const ctxTotales = document.getElementById('pacientesConsultasTotalChart').getContext('2d');
+                new Chart(ctxTotales, {
+                    type: 'bar', // Tipo de gráfico de barras
+                    data: {
+                        labels: labelsTotales,
+                        datasets: [{
+                            label: 'Cantidad',
+                            data: valuesTotales,
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.6)', // Color para Pacientes
+                                'rgba(153, 102, 255, 0.6)' // Color para Consultas
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false, // No necesitamos leyenda, las etiquetas son claras
+                                    color: 'rgba(0, 0, 0, 0.8)', // Asegúrate de que el color sea visible si lo usas
+                                    font: {
+                                        size: 14
+                                    }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Total de Pacientes y Total de Consultas Registradas',
+                                color: 'rgba(0, 0, 0, 0.9)',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                precision: 0,
+                                color: 'rgba(0, 0, 0, 0.7)', // Color de los números del eje Y
+                                font: {
+                                    size: 12 // Tamaño de fuente para los ticks del eje Y
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)' // Líneas de la grilla más visibles pero suaves
+                            },
+                                title: {
+                                    display: true,
+                                    text: 'Cantidad',
+                                    color: 'rgba(0, 0, 0, 0.8)', // Título del eje Y
+                                    font: {
+                                        size: 14 // Tamaño de fuente para el título del eje Y
+                                    }
+                                }
+                            },
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error al cargar el gráfico de totales:', error);
+                document.getElementById('pacientesConsultasTotalChart').parentElement.innerHTML = '<p>Error al cargar el gráfico de totales.</p>';
+            }
+        }
+
+        // Llama a la función cuando el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', fetchAndRenderCharts);
+    </script>
+</body>
+</html>

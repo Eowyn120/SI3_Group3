@@ -1,5 +1,6 @@
 require('dotenv').config(); // Permite cargar variables de entorno desde un archivo .env
 const mysql = require('mysql'); // ¡Importante! Usamos el paquete 'mysql', no 'mysql2'
+const util = require('util'); // <--- ¡Añade esta línea!
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST || "localhost",    // El host de tu base de datos (XAMPP usa localhost)
@@ -8,5 +9,9 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME || "nutricode", // El nombre de tu base de datos
     connectionLimit: 10                          // Límite de conexiones simultáneas al pool
 });
+
+
+// Promisifica el método pool.query para usarlo con async/await
+pool.query = util.promisify(pool.query); // <--- Añade esta línea
 
 module.exports = pool; // Exportamos el pool de conexiones directamente
