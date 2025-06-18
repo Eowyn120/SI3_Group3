@@ -858,7 +858,7 @@ ul.cont li {
 .contact {
     background: #0e4691;
     padding: 40px 0;
-    max-width: 495px;
+    max-width: 790px;
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
@@ -884,6 +884,8 @@ ul.cont li {
     transition: ease-in all 0.5s;
     text-align: center;
     text-decoration: none; /* Quita el subrayado de los enlaces */
+    margin-bottom: 6px;
+    margin-right: 4px;
 }
 
 .send_btn {
@@ -1075,12 +1077,14 @@ select.form-control {
     color: #f9fcfd; /* Color de acento para las etiquetas */
     font-size: 14px;
     margin-bottom: 3px; /* Pequeño espacio entre etiqueta y valor */
+    padding-left: 10px;
 }
 
 .detail-value {
     font-size: 16px;
     word-wrap: break-word; /* Rompe palabras largas para evitar desbordamiento */
     color: #f9fcfd; /* Color del valor */
+    padding-left: 10px;
 }
 
 .patient-actions {
@@ -1755,3 +1759,75 @@ select.contactus option {
     width: 100%; /* Asegura que ocupe todo el ancho disponible */
     box-sizing: border-box; /* Incluye padding en el ancho */
 }
+
+
+/* Estilos básicos para los contenedores de los gráficos */
+.chart-container {
+    width: 80%; /* O el tamaño que prefieras */
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+
+
+/* --- Estilos para Dashboard de Pacientes (dashboard_pacientes.ejs) --- */
+
+/* Ajusta el título principal */
+.container h1 {
+    color: #333; /* Un color más oscuro para el título */
+    font-weight: bold;
+}
+
+/* Estilos para las tarjetas de gráficos */
+.card {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.card-title {
+    color: #555;
+    font-size: 1.5rem; /* Ajusta el tamaño del título del gráfico */
+}
+
+/* Contenedor para el canvas del gráfico para controlar el tamaño */
+.chart-canvas-container {
+    position: relative;
+    width: 100%;
+    /* Altura máxima para gráficos de barras para evitar que se estiren demasiado */
+    /* Puedes ajustar esta altura según tus necesidades */
+    max-height: 400px;
+}
+
+/* Para gráficos de tipo 'pie'/'doughnut', asegúrate de que sean cuadrados */
+/* o limitados en altura para que el círculo no se distorsione */
+#sexoChart {
+    /* Esto es importante para gráficos circulares, mantiene el aspecto 1:1 */
+    max-width: 400px; /* Limita el ancho para que no sea enorme */
+    margin: 0 auto; /* Centra el gráfico circular */
+    display: block; /* Para que margin: auto funcione */
+}
+
+/* Espaciado adicional si lo necesitas entre secciones */
+.dashboard-section {
+    padding: 30px 0;
+    margin-bottom: 30px;
+    background-color: #f9f9f9; /* Un color de fondo suave para las secciones */
+    border-radius: 8px;
+}
+
+/* Estilos para el footer para que no se superponga */
+/* Asegúrate de que tu main-layout body tenga un min-height para empujar el footer */
+body.main-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body.main-layout > .container { /* El contenedor principal de los gráficos */
+    flex-grow: 1; /* Permite que el contenido principal ocupe el espacio disponible */
+}
+
