@@ -610,7 +610,7 @@ button {
 
 .clients_box {
      text-align: center;
-     background: #e2e3e3;
+     background: #39b54a;
      padding: 50px 15px;
      border-radius: 15px;
      position: relative;
@@ -856,14 +856,14 @@ ul.cont li {
 
 
 .contact {
-    background: #004aad;
-    padding: 90px 0;
-    max-width: 760px;
+    background: #0e4691;
+    padding: 40px 0;
+    max-width: 495px;
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 5%;
-    box-shadow: -5px 5px 30px 0px #004aad;
+    border-radius: 0.9%;
+    box-shadow: -5px 5px 30px 0px #7d8ca1;
 }
 
 .main_form {
@@ -887,7 +887,7 @@ ul.cont li {
 }
 
 .send_btn {
-    background-color: #17a2b8; /* Ejemplo de un color para 'Agregar' */
+    background-color: #4CAF50; /* Ejemplo de un color para 'Agregar' */
     color: #fff;
     border: none;
     max-width: 250px;
@@ -1492,13 +1492,13 @@ p {
 
 /* Estilo para el separador (línea horizontal) entre las cards */
 .imc-category-separator {
-    border-top: 2px solid #6c757d; /* Color y grosor de la línea */
+    border-top: 2px solid #f9fcff; /* Color y grosor de la línea */
     margin: 20px 0; /* Espacio arriba y abajo del separador */
 }
 
 /* Estilos para el mensaje de "no hay datos" */
 .text-center.text-muted.py-4 {
-    color: #6c757d !important; /* Asegura que el color sea gris claro */
+    color: #ffffff !important; /* Asegura que el color sea gris claro */
     padding: 1.5rem 0 !important; /* Espaciado interno */
 }
 
@@ -1626,7 +1626,7 @@ p {
 /* Estilos para el mensaje de "no hay datos" */
 /* Si ya tienes esta clase definida, no necesitas repetirla */
 .text-center.text-muted.py-4 {
-    color: #6c757d !important;
+    color: #f6fbff !important;
     padding: 1.5rem 0 !important;
 }
 
