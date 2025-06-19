@@ -163,10 +163,6 @@ router.get('/reporte/:id', async (req, res) => {
     // 2. Crear un nuevo documento PDF
         const doc = new PDFDocument({ margin: 50 }); // Márgenes para mejor legibilidad
 
-        // 3. Configurar las cabeceras para la descarga del PDF
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', `attachment; filename="reporte_seguimiento_${id}.pdf"`);
-
         // 4. Pipe el documento a la respuesta HTTP
         doc.pipe(res);
 
@@ -180,7 +176,7 @@ router.get('/reporte/:id', async (req, res) => {
         });
 
         // 5. Añadir contenido al PDF
-        doc.fontSize(22).font('Helvetica').text(`Reporte de Seguimiento #${data.id}`, { align: 'center' });
+        doc.fontSize(22).font('Helvetica').text(`Reporte de Seguimiento #${data[0].id}`, { align: 'center' });
         doc.fontSize(10).font('Helvetica').text(`Fecha de Reporte: ${new Date().toLocaleDateString('es-ES')}`, { align: 'right' });
         doc.moveDown(2);
 
@@ -189,13 +185,12 @@ router.get('/reporte/:id', async (req, res) => {
         doc.moveDown(0.5);
 
         doc.fontSize(12).font('Helvetica')
-            .text(`ID Seguimiento: ${data.id}`)
-            .text(`Fecha Seguimiento: ${data.fecha_seguimiento ? new Date(data.fecha_seguimiento).toLocaleDateString('es-ES') : 'N/A'}`)
-            .text(`Peso: ${data.peso} kg`)
-            .text(`Altura: ${data.altura} cm`)
-            .text(`IMC: ${data.imc_valor} (Estado: ${data.status})`)
-            .text(`Condición: ${data.nombre_condicion}`)
-            .text(`Comentarios: ${data.comentarios_seguimiento || 'N/A'}`); // Asumiendo que 'comentarios_seguimiento' es el campo
+            .text(`ID Seguimiento: ${data[0].id}`)
+            .text(`Fecha Seguimiento: ${data[0].fecha ? new Date(data[0].fecha).toLocaleDateString('es-ES') : 'N/A'}`)
+            .text(`Peso: ${data[0].peso} kg`)
+            .text(`Altura: ${data[0].talla} cm`)
+            .text(`IMC: ${data[0].imc_valor} (Estado: ${data[0].status})`)
+            .text(`Condición: ${data[0].nombre}`)
         doc.moveDown();
 
         // Sección de Resultados
@@ -203,9 +198,9 @@ router.get('/reporte/:id', async (req, res) => {
         doc.moveDown(0.5);
 
         doc.fontSize(12).font('Helvetica')
-            .text(`Prescripción: ${data.prescripcion || 'N/A'}`)
-            .text(`Plan Nutricional: ${data.plan_nutricional || 'N/A'}`)
-            .text(`Recomendaciones: ${data.recomendaciones || 'N/A'}`);
+            .text(`Prescripción: ${data[0].prescripcion || 'N/A'}`)
+            .text(`Plan Nutricional: ${data[0].plan_nutricional || 'N/A'}`)
+            .text(`Recomendaciones: ${data[0].recomendaciones || 'N/A'}`);
         doc.moveDown();
 
         // Sección de Nutrientes
@@ -215,25 +210,25 @@ router.get('/reporte/:id', async (req, res) => {
         // Proteínas
         doc.fontSize(12).font('Helvetica').text('Proteínas:');
         doc.font('Helvetica')
-            .text(`   - Calorías: ${data.cal_proteicas || 'N/A'} kcal`)
-            .text(`   - Gramaje: ${data.gramajeProteinas || 'N/A'} g`)
-            .text(`   - Ración: ${data.racionProteinas || 'N/A'}`);
+            .text(`   - Calorías: ${data[0].cal_proteicas || 'N/A'} kcal`)
+            .text(`   - Gramaje: ${data[0].gramajeProteinas || 'N/A'} g`)
+            .text(`   - Ración: ${data[0].racionProteinas || 'N/A'}`);
         doc.moveDown(0.5);
 
         // Lípidos
         doc.fontSize(12).font('Helvetica').text('Lípidos:');
         doc.font('Helvetica')
-            .text(`   - Calorías: ${data.cal_lipidos || 'N/A'} kcal`)
-            .text(`   - Gramaje: ${data.gramajeLipidos || 'N/A'} g`)
-            .text(`   - Ración: ${data.racionLipidos || 'N/A'}`);
+            .text(`   - Calorías: ${data[0].cal_lipidos || 'N/A'} kcal`)
+            .text(`   - Gramaje: ${data[0].gramajeLipidos || 'N/A'} g`)
+            .text(`   - Ración: ${data[0].racionLipidos || 'N/A'}`);
         doc.moveDown(0.5);
 
         // Carbohidratos
         doc.fontSize(12).font('Helvetica').text('Carbohidratos:');
         doc.font('Helvetica')
-            .text(`   - Calorías: ${data.cal_carbohidratos || 'N/A'} kcal`)
-            .text(`   - Gramaje: ${data.gramajeCarbohidratos || 'N/A'} g`)
-            .text(`   - Ración: ${data.racionCarbohidratos || 'N/A'}`);
+            .text(`   - Calorías: ${data[0].cal_carbohidratos || 'N/A'} kcal`)
+            .text(`   - Gramaje: ${data[0].gramajeCarbohidratos || 'N/A'} g`)
+            .text(`   - Ración: ${data[0].racionCarbohidratos || 'N/A'}`);
         doc.moveDown();
         
         // Pie de página (opcional)
@@ -243,7 +238,9 @@ router.get('/reporte/:id', async (req, res) => {
 
         // 6. Finalizar el documento
         doc.end();
-        res.send('FUNCIONA');
+        // 3. Configurar las cabeceras para la descarga del PDF
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="reporte_seguimiento_${id}.pdf"`);
   })
   .catch((err)=>{
       console.log('Error al generar el PDF del seguimiento:', err);
