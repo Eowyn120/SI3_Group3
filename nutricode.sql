@@ -19,7 +19,10 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `nutricode`
---
+---- IMPORTANTE: Añade estas dos líneas
+CREATE DATABASE IF NOT EXISTS `nutricode`;
+USE `nutricode`;
+
 
 -- --------------------------------------------------------
 
