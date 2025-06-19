@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end consultation-actions">
                                             <!-- Podrías usar item.id aquí para un enlace a 'Ver Detalle Completo' si tuvieras la ID de seguimiento en la consulta -->
-                                            <button id="addPatientBtn" class="btn btn-info btn-sm">Ver Detalle Completo</button>
+                                            <a href="/users/reporte/<%= item.id %>"><button id="addPatientBtn" class="btn btn-info btn-sm">Ver Detalle Completo</button></a>
                                         </div>
                                     </div>
                                     <hr class="patient-separator">
@@ -239,7 +239,7 @@
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
       <script src="/js/custom-script.js"></script>
       <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        /*document.addEventListener('DOMContentLoaded', function() {
             const addPatientBtn = document.getElementById('addPatientBtn');
 
             if (addPatientBtn) {
@@ -257,14 +257,14 @@
                     // IMPORTANTE: Si después de mostrar el alert SÍ quieres que haya una redirección,
                     // debes hacerla manualmente AQUÍ, después del alert.
                     // Por ejemplo:
-                    window.location.href = '/users'; 
+                    window.location.href = '#'; 
                     // o para simular un envío de formulario si es necesario:
                     // document.getElementById('tuFormularioID').submit(); 
                 });
             } else {
                 console.error("El botón con ID 'addPatientBtn' no fue encontrado.");
             }
-        });
+        });*/
         
       </script>      
    </body>

@@ -4,7 +4,8 @@ module.exports = {
     obtenerSeguimiento(idPaciente) {
         return new Promise((resolve, reject) => {
             conexion.query(
-                `SELECT 
+                `SELECT
+                    seguimiento.id, 
                     seguimiento.fecha, 
                     seguimiento.motivo, 
                     seguimiento.peso, 
@@ -39,7 +40,11 @@ module.exports = {
             conexion.query('SELECT seguimiento.*, imc.status, condicion.nombre, resultado.prescripcion, resultado.plan_nutricional, resultado.recomendaciones, proteinas.cal_proteicas, proteinas.gramaje AS gramajeProteinas, proteinas.racion AS racionProteinas, lipidos.cal_lipidos, lipidos.gramaje AS gramajeLipidos, lipidos.racion AS racionLipidos, carbohidratos.cal_carbohidratos, carbohidratos.gramaje AS gramajeCarbohidratos, carbohidratos.racion AS racionCarbohidratos FROM seguimiento INNER JOIN imc ON seguimiento.imc_id = imc.id INNER JOIN condicion ON seguimiento.condicion_id = condicion.id INNER JOIN resultado ON resultado.seguimiento_id = seguimiento.id INNER JOIN proteinas ON seguimiento.id = proteinas.seguimiento_id INNER JOIN lipidos ON seguimiento.id = lipidos.seguimiento_id INNER JOIN carbohidratos ON seguimiento.id = carbohidratos.seguimiento_id WHERE seguimiento.id = ?',
                 [id], (err, resultados) =>{
                     if (err) reject(err);
-                    else resolve(resultados);
+                    else{
+                        resolve(resultados)
+                        console.log("Funciona la consulta");
+                        console.log(JSON.stringify(resultados, null, 4));
+                    };
                 }
             )
         })

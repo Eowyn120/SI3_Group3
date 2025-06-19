@@ -38,7 +38,11 @@ app.use('/api', chartRoutes); // Prefijo '/api' para tus rutas de datos
 // --- ¡ESTA ES LA RUTA QUE NECESITAS REVISAR/AÑADIR! ---
 // Ruta para renderizar la página dashboard_pacientes
 app.get('/dashboard_pacientes', (req, res) => {
+    if (req.session.auth){
     res.render('dashboard_pacientes'); // Renderiza tu archivo EJS
+    }else{
+      res.redirect('/login');
+    }
 });
 
 // catch 404 and forward to error handler
